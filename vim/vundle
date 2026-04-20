@@ -1,0 +1,87 @@
+" vim: set ft=vim:
+" Vundle config
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+
+" Bundles {{{1
+" Bundle 'msanders/snipmate.vim'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-fugitive'
+Bundle 'scrooloose/nerdtree'
+Bundle 'vim-syntastic/syntastic'
+Bundle 'sjl/gundo.vim'
+Bundle 'matthias-guenther/hammer.vim'
+Bundle 'godlygeek/tabular'
+" Bundle 'Valloric/YouCompleteMe'
+Bundle 'junegunn/goyo.vim'
+Bundle 'junegunn/limelight.vim'
+Bundle 'ctrlpvim/ctrlp.vim'
+" Bundle 'fholgado/minibufexpl.vim'
+Bundle 'bling/vim-airline'
+Bundle 'nvie/vim-flake8'
+Bundle 'majutsushi/tagbar'
+Bundle 'mtth/scratch.vim'
+Bundle 'tmhedberg/SimpylFold'
+Bundle 'vim-airline/vim-airline-themes'
+Bundle 'nathanaelkane/vim-indent-guides'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+Plugin 'speshak/vim-cfn'
+Plugin 'ajh17/VimCompletesMe'
+Plugin 'ludovicchabant/vim-gutentags'
+Plugin 'skywind3000/gutentags_plus'
+Bundle 'sheerun/vim-polyglot'
+
+" Bundle 'AutoTag'
+
+" Colorschemes {{{1
+Bundle 'sjl/badwolf' 
+Bundle 'tomasr/molokai'
+Bundle 'croaker/mustang-vim'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'chriskempson/vim-tomorrow-theme'
+Bundle 'nanotech/jellybeans.vim'
+Bundle 'djjcast/mirodark'
+Bundle 'kristijanhusak/vim-hybrid-material'
+Bundle 'w0ng/vim-hybrid'
+Bundle 'jnurmine/Zenburn'
+Bundle 'HenryNewcomer/vim-theme-papaya'
+Bundle 'morhetz/gruvbox'
+Bundle 'junegunn/seoul256.vim'
+Bundle 'jonathanfilip/vim-lucius'
+Bundle 'romainl/Apprentice'
+Bundle 'jpo/vim-railscasts-theme'
+Bundle 'crusoexia/vim-monokai'
+Plugin 'ghifarit53/tokyonight-vim'
+
+" Syntax {{{1
+Bundle 'plasticboy/vim-markdown'
+Bundle 'elzr/vim-json'
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'rodjek/vim-puppet'
+Bundle "lepture/vim-jinja"
+Bundle "saltstack/salt-vim"
+" Bundle 'chase/vim-ansible-yaml'
+Bundle 'pearofducks/ansible-vim'
+Bundle 'Matt-Deacalion/vim-systemd-syntax'
+Bundle 'robbles/logstash.vim'
+Bundle 'stephpy/vim-yaml'
+Bundle 'hashivim/vim-terraform'
+Bundle 'ekalinin/Dockerfile.vim'
+Bundle 'goerz/jupytext.vim'
+
+Bundle 'nginx.vim'
+" Bundle 'hdima/python-syntax'
+
+call vundle#end()
+

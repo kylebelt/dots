@@ -1,0 +1,22 @@
+# Latex compiler helper
+function latexpress() {
+    output_dir="/tmp/latex_out"
+    filename=$(echo $* | egrep --color="never" -o "\w+.tex" | cut -d. -f1)
+
+    mkdir -p $output_dir
+    xelatex -halt-on-error -output-directory=$output_dir $* || return
+    mv $output_dir/${filename}.pdf .
+    open ${filename}.pdf
+}
+
+function ff(){
+    mvim $(find . -type f -not -path "./.git/*" -not -name "*.pyc" -not -name ".*" | fzy)
+}
+
+function tt(){
+    vim $(find . -type f -not -path "./.git/*" -not -name "*.pyc" -not -name ".*" | fzy)
+}
+
+function t() {
+    echo -ne "\033]0;"$*"\007"
+}

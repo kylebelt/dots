@@ -1,0 +1,47 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+    shell:
+      quiet: true
+
+- clean: ['~', '~/.config']
+
+- create:
+    - ~/.config
+    - ~/.cache
+    - ~/.local/share
+    - ~/.local/state
+    - ~/.config/aws
+
+- plugins:
+    - dotbot-plugins/dotbot-brew/
+
+- link:
+    ~/.bash_profile: bash/bash_profile
+    ~/.bash_functions: bash/bash_functions
+    ~/.config/cmux:
+    ~/.config/eza:
+    ~/.config/fastfetch:
+    ~/.config/ghostty:
+    ~/.config/karabiner:
+    ~/.config/lazygit:
+    ~/.config/nvim:
+    ~/.config/omp:
+    ~/.config/p10k:
+    ~/.config/starship.toml:
+      path: starship/starship.toml
+      force: true
+    ~/.config/tmux/tmux.conf: tmux/tmux.conf
+    ~/.vimrc: vim/vimrc
+    ~/.vim_functions: vim/vim_functions
+    ~/.vundle: vim/vundle
+    ~/.config/yazi:
+    ~/.config/zsh:
+      exclude: [.zshrc, zshenv]
+    ~/.zshenv: zsh/zshenv
+    ~/.config/zsh/.zshrc: zsh/zshrc
+    ~/.config/zsh-patina:
+
+- brewfile:
+    - brew/Brewfile

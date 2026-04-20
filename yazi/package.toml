@@ -1,0 +1,37 @@
+[plugin]
+deps = []
+
+[[flavor.deps]]
+use = "BennyOe/tokyo-night"
+rev = "8e6296f"
+hash = "d9da921c3bd37ba32ee27a8a7a40461f"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:dracula"
+rev = "0670801"
+hash = "20624fcdfcf7e4e912de05e348065e5e"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-mocha"
+rev = "0670801"
+hash = "7dfe41c9c3d9be76da8a844263d0bbed"
+
+[[flavor.deps]]
+use = "kmlupreti/ayu-dark"
+rev = "1da67a8"
+hash = "4358d2053d15bd6855968e2d4646c744"
+
+[[flavor.deps]]
+use = "ficd0/ashen:ashen"
+rev = "7d18c13"
+hash = "65b56e9ee65dd33eec62d6ca4209611b"
+
+[[flavor.deps]]
+use = "Mintass/rose-pine"
+rev = "d91f8f2"
+hash = "87da3630653b6d272e43658418599188"
+
+[[flavor.deps]]
+use = "AdithyanA2005/nord"
+rev = "bdf0bd4"
+hash = "816970e00d643d3e8213b430d2148aec"

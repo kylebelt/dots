@@ -1,0 +1,133 @@
+# Kiro CLI pre block. Keep at the top of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/bash_profile.pre.bash" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/bash_profile.pre.bash"
+# Sources
+source ~/.bash_functions
+
+eval $(/opt/homebrew/bin/brew shellenv)
+export PATH="$HOME/.toolbox/bin:/usr/local/sbin:$PATH"
+
+alias v='f -e vim'
+
+if [ -r $(brew --prefix)/etc/profile.d/bash_completion.sh ]; then
+    source $(brew --prefix)/etc/profile.d/bash_completion.sh
+fi
+
+if [ -f "/usr/local/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+    __GIT_PROMPT_DIR="/usr/local/opt/bash-git-prompt/share"
+    source "/usr/local/opt/bash-git-prompt/share/gitprompt.sh"
+fi
+
+# Environment variables
+export BROWSER="less"
+export PAGER="less"
+export EDITOR="vim"
+export CLICOLOR=1
+export LC_ALL="en_US.UTF-8"
+export GOPATH="/opt/go"
+# export PYTHONPATH='/usr/local/lib/python2.7/site-packages'
+
+# Set Colors shortcuts
+export CBOLD="\[$(tput bold)\]" 
+export CRED="\[$(tput setaf 1)\]"
+export CGREEN="\[$(tput setaf 2)\]"
+export CYELLOW="\[$(tput setaf 3)\]"
+export CBLUE="\[$(tput setaf 4)\]"
+export CMAGENTA="\[$(tput setaf 5)\]"
+export CCYAN="\[$(tput setaf 6)\]"
+export CWHITE="\[$(tput setaf 7)\]"
+export CRESET="\[$(tput sgr0)\]"
+
+# Keep History under control
+# export PROMPT_COMMAND="history -a; history -n"
+export SHELL_SESSION_HISTORY=0
+export HISTCONTROL=ignoredups:erasedups:ignorespace
+export HISTSIZE=500000
+export HISTFILESIZE=500000000
+export SAVEHIST=$HISTSIZE
+shopt -s histappend
+shopt -s cdspell
+
+# Bash Aliases
+alias ls="ls -FG"
+alias df="df -kh"
+alias du="du -kc"
+alias grep="grep --color=always"
+alias egrep="egrep --color=always"
+alias fgrep="fgrep --color=always"
+alias sgrep="grep -sIl"
+# alias vim="mvim"
+# alias vi="vim"
+# alias vimdiff="mvim -d"
+alias g='git'
+alias mwinit='mwinit --aea'
+
+# Vundle Aliases
+alias vundleinstall="vi +PluginInstall +qall"
+alias vundleclean="vi +PluginClean! +qall"
+alias vundlelist="vi +PluginList +qall"
+alias vundleupdate="vi +PluginUpdate +qall"
+
+# Fix wrong ctags version
+alias ctags="/usr/local/bin/ctags"
+
+# Other Helper Aliases
+alias md5sum="openssl dgst -md5"
+alias vimrc="mvim ~/.vimrc"
+alias sshconfig="mvim ~/.ssh/config"
+alias bashprof='mvim ~/.bash_profile'
+alias fixow='/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user;killall Finder;echo "Open With has been rebuilt, Finder will relaunch"'
+alias bashprofilesource="source ~/.bash_profile"
+alias updatedb="sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist"
+
+# SSH Aliases auto-complete
+complete -o default -W "$(grep -i "^host" $HOME/.ssh/config | cut -d" " -f2-)" scp sftp ssh
+complete -C aws_completer aws
+
+# Less Colors for Man Pages
+export LESS_TERMCAP_mb=$'\E[5;31m'       # begin blinking
+export LESS_TERMCAP_md=$'\E[1;38;5;74m'  # begin bold
+export LESS_TERMCAP_me=$'\E[m'           # end mode
+export LESS_TERMCAP_so=$'\E[1;33;41m'    # begin standout-mode - info box
+export LESS_TERMCAP_se=$'\E[m'           # end standout-mode
+export LESS_TERMCAP_us=$'\E[4;36m'       # begin underline
+export LESS_TERMCAP_ue=$'\E[m'           # end underline
+
+bash_prompt(){
+	local __user_and_host="$CWHITE\u@\h"
+	local __working_directory="$CBLUE\w"
+	local __git_branch="$(if [[ $(__git_ps1) =~ \*\)$ ]]; then 
+	echo $CYELLOW; 
+	elif [[ $(__git_ps1) =~ \+\)$ ]]; then 
+	echo $CRED; 
+	else echo $CGREEN; fi)$(__git_ps1 "(%s) ")"
+	local __cursor="$CCYAN> "
+	local __virtualenv=$([[ $VIRTUAL_ENV != "" ]] && echo "${CMAGENTA}[${VIRTUAL_ENV##*/}] ")
+
+	PS1="$__user_and_host $__git_branch"$__virtualenv"$__working_directory\n$__cursor$CRESET"
+}
+
+export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python"
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper_lazy.sh
+
+PROMPT_COMMAND=bash_prompt
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+alias vpn='/usr/local/bin/vpn-onetouch'
+alias vpns='/opt/cisco/anyconnect/bin/vpn status'
+alias vpnd='/opt/cisco/anyconnect/bin/vpn disconnect'
+
+(security find-certificate -a -p ls /System/Library/Keychains/SystemRootCertificates.keychain && security find-certificate -a -p ls /Library/Keychains/System.keychain) > $HOME/.mac-ca-roots && export REQUESTS_CA_BUNDLE="$HOME/.mac-ca-roots"
+export JAVA_TOOLS_OPTIONS="-Dlog4j2.formatMsgNoLookups=true"
+
+export JUPYTER_PATH="/opt/homebrew/share/jupyter"
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Kiro CLI post block. Keep at the bottom of this file.
+[[ -f "${HOME}/Library/Application Support/kiro-cli/shell/bash_profile.post.bash" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/bash_profile.post.bash"

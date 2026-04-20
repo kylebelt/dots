@@ -1,0 +1,65 @@
+# Theme
+config-file = themes/tokyo-dark
+background-opacity = 0.85
+background-blur = true
+background-blur-radius = 25
+
+# UI
+title-report = true
+window-theme = ghostty
+unfocused-split-opacity = 0.55
+split-divider-color = #524f67
+confirm-close-surface = false
+window-decoration = auto
+# window-padding-x = 10
+# window-padding-y = 10
+# window-padding-balance = true
+
+# Font
+font-size = 15
+# Condensed/SemiCondensed
+font-family = IoskeleyMono Nerd Font
+#font-family = Ioskeley Mono
+font-style = Regular
+font-style-bold = Bold
+font-style-italic = Italic
+font-style-bold-italic = Bold Italic
+
+# Shell
+shell-integration = zsh
+shell-integration-features = no-cursor,sudo,title,ssh-env,ssh-terminfo,path
+
+# Clipboard
+clipboard-read = allow
+clipboard-write = allow
+clipboard-paste-protection = false
+
+# UX
+confirm-close-surface = false
+quit-after-last-window-closed = true
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
+
+# opt+shift+delete to delete to space
+keybind = shift+alt+backspace=text:\x1b\x08
+
+# MacOS
+macos-titlebar-style = tabs
+macos-option-as-alt = true
+# macos-shortcuts = allow
+macos-icon = retro
+macos-icon-frame = chrome
+macos-icon-ghost-color = #7A0404
+macos-icon-screen-color = #000000
+
+# Mouse
+mouse-hide-while-typing = true
+# Fix stuttery scroll in tmux
+mouse-scroll-multiplier = 0.30
+
+# Updates
+auto-update = download
+auto-update-channel = stable
+
+# Shaders
+custom-shader = ~/.config/ghostty/shaders/cursor_warp.glsl
+custom-shader = ~/.config/ghostty/shaders/ripple_rectangle_cursor.glsl

@@ -1,0 +1,247 @@
+# SECTION: Path and Env setting
+
+# XDG Config patsh
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+# Env Vars
+# Set default XDG config
+export EDITOR='nvim'
+export HOMEBREW_NO_ENV_HINTS=1
+export FZF_CTRL_R_OPTS="--layout=reverse --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'
+  --preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+
+# EZA Default config dir
+export EZA_CONFIG_DIR="$XDG_CONFIG_HOME/eza"
+
+# AWS
+export SHOW_AWS_PROMPT=false # Fix AWS extension trash prompt
+export AWS_PROFILE='default'
+export AWS_CONFIG_DIR="${XDG_CONFIG_HOME}/aws"
+
+# Python plugin auto venv activate/deactivate vars
+export PYTHON_VENV_NAME=".venv"
+export PYTHON_VENV_NAMES=($PYTHON_VENV_NAME .env venv env)
+export PYTHON_AUTO_VRUN=true
+
+# Set the zinit and plugins directory
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+# Set brew paths
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# SECTION: Stuff that need to be loaded early
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# SECTION: zinit and zstyle
+
+# Download zinit, if it's not there yet
+if [ ! -d "$ZINIT_HOME" ]; then
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+# Source/Load zinit
+source "${ZINIT_HOME}/zinit.zsh"
+
+# p10k
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+# ZVM
+source $ZDOTDIR/zvm_config.zsh
+zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
+
+# Add in zsh plugins
+zinit ice wait lucid; zinit light Aloxaf/fzf-tab
+#zinit ice wait lucid; zinit light Freed-Wu/fzf-tab-source
+zinit ice wait lucid; zinit light zsh-users/zsh-completions
+zinit ice wait lucid; zinit light zsh-users/zsh-autosuggestions
+#zinit ice wait lucid; zinit light zsh-users/zsh-syntax-highlighting
+zinit ice wait lucid as"program" from"gh-r" pick"zsh-patina-*/zsh-patina" atload'eval "$(zsh-patina activate)"'
+zinit light michel-kraemer/zsh-patina
+
+# EZA Styling (must be before OMZP::eza loads)
+zstyle ':omz:plugins:eza' 'git-status' yes
+zstyle ':omz:plugins:eza' 'icons' yes
+zstyle ':omz:plugins:eza' 'dirs-first' yes
+zstyle ':omz:plugins:eza' 'hyperlink' yes
+zstyle ':omz:plugins:eza' 'header' yes
+
+# Add in snippets
+zinit ice wait lucid; zinit snippet OMZL::functions.zsh
+zinit ice wait lucid atload"alias gg='lazygit'"; zinit snippet OMZP::git
+zinit ice wait lucid; zinit snippet OMZP::sudo
+zinit ice wait lucid; zinit snippet OMZP::aws
+zinit ice wait lucid; zinit snippet OMZP::eza
+zinit ice wait lucid; zinit snippet OMZP::mise
+zinit ice wait lucid; zinit snippet OMZP::command-not-found
+zinit ice wait lucid; zinit snippet OMZP::macos
+zinit ice wait lucid; zinit snippet OMZP::python
+zinit ice wait lucid; zinit snippet OMZP::colored-man-pages
+zinit ice wait lucid; zinit snippet OMZP::uv
+zinit ice wait lucid; zinit snippet OMZP::fzf
+zinit ice wait lucid; zinit snippet OMZL::clipboard.zsh
+zinit ice wait lucid; zinit snippet OMZL::termsupport.zsh
+
+#continuous-trigger 'tab' precompile colors
+zinit ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
+    atpull'%atclone' pick"clrs.zsh" nocompile'!' \
+    atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
+zinit ice wait lucid; zinit light trapd00r/LS_COLORS
+
+# Completion styling
+zstyle ':completion:*:git-checkout:*' sort false
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' menu no
+
+# fzf-tab
+zstyle ':fzf-tab:*' fzf-flags --height=60% --cycle --preview-window=right:60% --layout=reverse
+# zstyle ':fzf-tab:complete:*' continuous-trigger 'tab'
+zstyle ':fzf-tab:complete:(cp|cd|nvim|z|vim|eza|bat):*' fzf-preview 'eza -1a --group-directories-first --color=always --icons=auto $realpath'
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':fzf-tab:*' popup-min-size 100 25
+
+# SECTION: Autocomplete
+
+# Load completions after all plugins/snippets have registered compdef calls
+setopt extendedglob
+autoload -Uz compinit
+if [[ -n $HOME/zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
+[[ $HOME/zcompdump -nt $HOME/zcompdump.zwc ]] && zcompile $HOME/zcompdump
+zicdreplay
+
+# SECTION: History management
+
+HISTSIZE=10000
+HISTFILE=$HOME/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt inc_append_history
+setopt share_history
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_find_no_dups
+
+# SECTION: Keybinds
+
+# Emacs Keybindings
+# Reduce ESC timeout to 10ms to avoid getting stuck waiting for meta sequences
+KEYTIMEOUT=1
+bindkey -e
+
+# History keymaps
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+
+# Fix tmux delete with bindkeys -e
+bindkey "^[[3~" delete-char
+
+# Delete up to symbol instead of space
+backward-kill-to-symbol() {
+  local WORDCHARS='*?[]~&;!#$%^(){}<>'
+  zle backward-kill-word
+}
+zle -N backward-kill-to-symbol
+
+bindkey '^[^?' backward-kill-to-symbol  # opt+delete in most terminals
+bindkey '^[^H' backward-kill-word # opt-shift-delete to delete entire words
+
+# Open buffer line in editor
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
+
+# SECTION: ZVM config
+
+# VI mode repeat last word
+function append-last-word { ((++CURSOR)); zle insert-last-word; }
+zle -N append-last-word
+# Normal Mode
+bindkey -M vicmd '\e.' append-last-word
+
+# Insert mode
+bindkey -M viins '\e.' insert-last-word
+
+# Kill word in all modes
+bindkey -M viins '^[^?' backward-kill-to-symbol  # opt+delete in most terminals
+bindkey -M viins '^[^H' backward-kill-word # opt-shift-delete to delete entire words
+bindkey -M vicmd '^[^?' backward-kill-to-symbol  # opt+delete in most terminals
+bindkey -M vicmd '^[^H' backward-kill-word # opt-shift-delete to delete entire words
+
+# SECTION: Aliases
+
+alias vimdiff='nvim -d'
+alias vim='nvim'
+alias vi='nvim'
+alias nv='nvim'
+alias nvs='nvim_switch_configuration'
+alias tmus=tmux
+alias mwinit='mwinit -f'
+alias zrc='vim .zshrc'
+alias vrc='vim $XDG_CONFIG_HOME/nvim/'
+alias cat='bat'
+alias kc='kiro-cli'
+alias fzf='fzf --layout reverse'
+alias kirobs='cd $HOME/OneDrive\ -\ amazon.com/Obsidian/kiro-assistant && kiro-cli chat --agent obsidian'
+alias l='ll'
+alias -s rc=$EDITOR
+alias -s py=$EDITOR
+alias -s md=$EDITOR
+alias -s md=$EDITOR
+alias sclaude="cd ~/sandbox/ && claude"
+
+# SECTION: Claude Code
+
+# Claude config Block
+# Enable Bedrock integration
+export CLAUDE_CODE_USE_BEDROCK=1
+export AWS_REGION="us-east-1"
+
+# Optional: Override the region for the small/fast model (Haiku)
+export ANTHROPIC_SMALL_FAST_MODEL_AWS_REGION="us-east-2"
+
+# Pin Models
+export ANTHROPIC_DEFAULT_OPUS_MODEL='us.anthropic.claude-opus-4-6-v1'
+export ANTHROPIC_DEFAULT_SONNET_MODEL='us.anthropic.claude-sonnet-4-6'
+export ANTHROPIC_DEFAULT_HAIKU_MODEL='us.anthropic.claude-haiku-4-5-20251001-v1:0'
+
+# SECTION: Includes
+
+# ZSH Functions
+source $ZDOTDIR/zsh_functions.zsh
+
+# AWS specific stuff
+if [ -f $AWS_CONFIG_DIR/zsh_aws.zsh ]; then
+  source $AWS_CONFIG_DIR/zsh_aws.zsh
+fi
+
+# SECTION: End of file evals
+
+eval "$(zoxide init --cmd cd zsh)"
+
+
+if [[ ! -f $XDG_CONFIG_HOME/p10k/tokyo-evenings.zsh ]]; then 
+  source $XDG_CONFIG_HOME/p10k/p10k.zsh
+else
+  source $XDG_CONFIG_HOME/p10k/tokyo-evenings.zsh
+fi
+
+#eval "$(oh-my-posh init zsh --config $HOME/.config/omp/tokyo_evenings.yaml)"
+#eval "$(starship init zsh)"

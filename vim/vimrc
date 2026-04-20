@@ -1,0 +1,324 @@
+" Vundle configfile source. Add the bundles to ~/.vundle and not here
+" Do not add any config BEFORE this line
+source ~/.vundle
+source ~/.vim_functions
+
+filetype plugin indent on
+
+" BASIC CONFIG {{{1
+
+syn on
+set background=dark
+set encoding=utf-8
+set ruler
+set cursorline 
+set relativenumber
+set nocompatible 
+set modeline 
+set modelines=1
+set showcmd 
+set noshowmode
+set ttyfast
+set laststatus=2
+set scrolloff=3
+set splitbelow 
+set splitright
+
+set smartindent
+set autoindent
+
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+set expandtab
+
+set incsearch
+set ignorecase
+set hlsearch
+set smartcase
+
+set wildmenu 
+set wildmode=longest,list
+
+set undofile
+set autoread
+set autowrite
+
+let g:tokyonight_transparent_background = 1
+let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_enable_italic = 1
+let g:tokyonight_current_word = 'underline'
+
+colorscheme tokyonight
+
+" Setting swap and undo directories
+set undodir=$HOME/.vim/undo
+set backupdir=$HOME/.vim/swap
+set directory=$HOME/.vim/swap
+
+" Color fix
+" set termguicolors
+
+let g:monokai_term_italic = 1
+let g:monokai_gui_italic = 1
+
+let g:hybrid_custom_term_colors = 1
+let g:hybrid_reduced_contrast = 0
+
+" REMAPS {{{1
+
+cab W w
+cab Wq wq
+
+" Fix j/k
+" nnoremap j gj
+" nnoremap k gk
+
+" Always display search results in the center of the screen
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
+
+" LEADER MAGIC {{{1
+"
+" Easily clean search hilighting with \<space>
+nnoremap <leader><space> :noh<cr>
+
+" Easily clean search hilighting with \<space>
+nnoremap <leader>n :set relativenumber!<cr>
+
+" Easily set paste!
+nnoremap <leader>p :set paste!<cr>
+
+" Remove trailing whitespace with \q
+nnoremap <leader>q :%s/\s\+$//<cr>:let @/=''<CR>
+
+" Easy switch wrap/nowrap
+nnoremap <leader>w :set wrap!<CR>
+
+" Open current file in GUI app (OSX Only)
+nnoremap <buffer> <leader>o :exec '!open' shellescape(@%, 1)<cr><cr>
+
+" Toggle visible whitespace
+nnoremap <leader>l :set list!<CR> 
+set list lcs=trail:·,tab:»·
+
+" Easy open/close folds
+nnoremap <leader>z zi
+vnoremap <leader>z zi
+nnoremap <Space> za
+vnoremap <Space> za
+nnoremap <S-Space> zA
+vnoremap <S-Space> zA
+
+nnoremap <silent> n n:call HLNext(0.4)<cr>
+nnoremap <silent> N N:call HLNext(0.4)<cr>
+
+" vmap <expr> <S-h> DVB_Drag('left')
+" vmap <expr> <S-l> DVB_Drag('right')
+" vmap <expr> <S-k> DVB_Drag('down')
+" vmap <expr> <S-j> DVB_Drag('up')
+
+" vmap <expr> D DVB_Duplicate()
+
+" Open VSplit with vimrc
+nnoremap <leader>ec <C-w><C-v><C-l>:e $MYVIMRC<cr>
+
+" Source vimrc
+nnoremap <leader>rc :source ~/.vimrc<cr>
+
+" Open VSplit e move to it
+nnoremap <leader>v <C-w>v<C-w>l
+
+" Open file Browser vertically
+nnoremap <leader>\| :Ve<cr>
+
+" Open file Browser horizontally
+nnoremap <leader>_ :Se<cr>
+
+" Enable diff
+nnoremap <leader>dt :windo diffthis<cr>
+
+" Update diff
+nnoremap <leader>du :windo diffup<cr>
+
+" Disable Diff
+nnoremap <leader>do :windo diffoff<cr>:windo set noscrollbind nocursorbind<cr>
+
+" PLUGIN CONFIG {{{1
+
+" Enable Indent Guides
+let g:indent_guides_enable_on_vim_startup=1
+
+" NERDTree Toggle
+map <leader>T :NERDTreeToggle<CR>
+map <leader>t :NERDTreeFocus<CR>
+map <leader>c :NERDTreeCWD<CR>
+let NERDTreeHijackNetrw=0
+let NERDTreeShowBookmarks=1
+
+" Snipmate Deprecation
+let g:snipMate = { 'snippet_version' : 1 }
+
+" NERDTree auto close
+au bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" Auto Open if no file
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Gundo Toggle
+nnoremap <leader>u :GundoToggle<CR>
+
+" Gundo Settings
+let g:gundo_right = 1
+let g:gundo_close_on_revert = 1
+let g:gundo_preview_bottom = 1
+let g:gundo_prefer_python3 = 1
+
+" Taglist plugin mapping
+nmap <leader>o :TagbarToggle<CR>
+
+let g:tagbar_type_ansible = {
+	\ 'ctagstype' : 'ansible',
+	\ 'kinds' : [
+		\ 't:tasks'
+	\ ],
+	\ 'sort' : 0
+\ }
+
+" Terraform
+let g:terraform_align=1
+let g:terraform_commentstring='//%s'
+
+" THeme
+let g:enable_bold_font = 1
+
+" Airline Config
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'tokyonight'
+let g:airline_extensions = ['branch','virtualenv']
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+
+" Syntastic Settings
+let g:syntastic_json_checkers=['jsonlint']
+let g:syntastic_cloudformation_checkers = ['cfn_lint']
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '!'
+
+" Git Push
+" nmap <leader>gp :Git push<CR>
+
+" CTRL-P
+nnoremap <C-l> :CtrlPMRUFiles<CR>
+let g:ctrlp_prompt_mappings = { 
+	\ 'PrtClearCache()': ['<c-q>'], 
+\ }
+
+let g:ConqueTerm_PyVersion = 3
+
+" Ansible Vim
+
+let g:ansible_yamlKeyName = 'yamlKey'
+let g:ansible_name_highlight = 'd'
+let g:ansible_extra_keywords_highlight = 1
+
+" ADVANCED CONFIGS {{{1
+
+" Return cursor to where left
+au BufWinLeave ?* mkview
+au BufWinEnter ?* silent loadview
+let g:skipview_files = [
+            \ '/private/tmp/*',
+            \ '/private/var/*',
+            \ '/dev/*',
+            \ ]
+
+" Save when losing focus
+" au FocusLost ?* :wa
+
+" FILE TYPE SPECIFIC CONFIGS {{{2
+
+" Custom file syntax
+au BufRead,BufNewFile *.pp set filetype=puppet
+au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} set ft=markdown
+au BufRead,BufNewFile *.{json,jsonp} set filetype=json
+au BufRead,BufNewFile *.sls set filetype=sls
+au BufRead,BufNewFile */ansible/*.yml set filetype=yaml.ansible
+au BufRead,BufNewFile */playbooks/*.yml set filetype=yaml.ansible
+au BufRead,BufNewFile */roles/*.yml set filetype=yaml.ansible
+au BufRead,BufNewFile */inventory/*hosts set filetype=ansible_hosts
+
+" Python
+" au FileType python set omnifunc=pythoncomplete#Complete
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+nnoremap <buffer> <leader>rr :exec '!python' shellescape(@%, 1)<cr>
+nnoremap <buffer> <leader>re :exec '!python3' shellescape(@%, 1)<cr>
+
+au BufNewFile,BufRead *.py 
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix |
+	\ set encoding=utf-8 |
+	\ set foldmethod=indent |
+	\ set foldlevel=99
+
+"python with virtualenv support
+if has('pyton3')
+py3 << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+project_base_dir = os.environ['VIRTUAL_ENV']
+activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+exec(open(activate_this).read(), dict(__file__=activate_this))
+EOF
+elsif has('python')
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+endif
+
+let python_highlight_all=1
+
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+
+" JSON settings
+au Filetype json set sts=2 ts=2 sw=2 foldmethod=syntax
+
+" Preview
+nmap <leader>i :Preview<CR>
+
+" Change hybrid change highlight color
+if g:colors_name == 'hybrid'
+    highlight DiffText ctermfg=11 ctermbg=53 guifg=#f0c674 guibg=#5f005f
+endif
+
+" Folding Configs {{{2
+
+" au BufRead,BufNewFile ?* set foldtext=FoldText()
+
+" SSHconfig
+au BufRead,BufNewFile *.ssh/config set foldexpr=SSHconfigFolds()
+
+" Vim configs
+au FileType vim set foldmethod=marker
+
+set guioptions-=r
+set guioptions-=L
+set guifont=IosevkaTermNFM-Medium:h13 

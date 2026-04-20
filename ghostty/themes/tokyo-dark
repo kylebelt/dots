@@ -1,0 +1,26 @@
+# Tokyo Dark https://base46.vercel.app/theme?name=tokyodark
+palette = 0=#11121d
+palette = 1=#ee6d85
+palette = 2=#dfae67
+palette = 3=#7199ee
+palette = 4=#95c561
+palette = 5=#a485dd
+palette = 6=#a485dd
+palette = 7=#abb2bf
+palette = 8=#282934
+palette = 9=#ee6d85
+palette = 10=#dfae67
+palette = 11=#7199ee
+palette = 12=#95c561
+palette = 13=#a485dd
+palette = 14=#a485dd
+palette = 15=#b2b9c6
+background = #11121d
+foreground = #abb2bf
+# cursor-color = #95c561
+# cursor-color = #7199ee
+cursor-color = #dfae67
+cursor-style = block
+selection-background = #282934
+selection-foreground = #abb2bf
+

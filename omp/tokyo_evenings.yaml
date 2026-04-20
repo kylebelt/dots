@@ -1,0 +1,210 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
+
+version: 4
+final_space: true
+shell_integration: true
+console_title_template: "{{ .Shell }} in {{ .Folder }}"
+
+blocks:
+  - type: prompt
+    alignment: left
+    newline: true
+
+    segments:
+      - type: session
+        style: plain
+        template: "{{ .UserName }}{{ if .SSHSession }}@{{ .HostName }}{{ end }} "
+        foreground: p:soft_violet
+        background: transparent
+
+      - type: path
+        style: plain
+        template: "{{ .Path }} "
+        background: transparent
+        foreground: p:cornflower_blue
+        options:
+          style: full
+
+      - type: git
+        style: plain
+        template: "{{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <p:pale_azure>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>"
+        foreground: p:slate_violet
+        background: transparent
+        options:
+          branch_icon: ""
+          commit_icon: "@"
+          fetch_status: true
+
+  - type: prompt
+    alignment: right
+    overflow: hide
+    filler: "{{ if .Overflow }} {{ else }}<p:dark_cobalt_blue>┄</>{{ end }}"
+    force: true
+
+    segments:
+      - type: status
+        style: plain
+        template: "{{ if ne .Code 0 }} ✘ {{ reason .Code }}{{ end }}"
+        background: transparent
+        foreground: p:crimson
+
+      - type: python
+        style: plain
+        template: "{{ if gt .Segment.Index 0 }} <p:slate_violet>⋮</>{{ end }} {{ if .Error }}{{ .Error }}{{ else }} {{ .Venv }} →{{ .Full }}{{ end }}"
+        background: transparent
+        foreground: p:muted_periwinkle
+        options:
+          display_mode: environment
+          cache_duration: 24h
+          fetch_version: true
+          fetch_virtual_env: true
+          default_venv_names:
+            - .venv
+            - .env
+            - venv
+            - env
+
+      - type: node
+        style: plain
+        template: "{{ if gt .Segment.Index 0 }} <p:slate_violet>⋮</>{{ end }} {{ if .Error }}{{ .Error }}{{ else }} {{ if .PackageManagerIcon }}{{ .PackageManagerIcon }}{{ end }}{{ .Full }}{{ end }}"
+        background: transparent
+        foreground: p:muted_periwinkle
+        options:
+          cache_duration: 24h
+          display_mode: context
+          fetch_version: true
+
+      - type: lua
+        style: plain
+        template: "{{ if gt .Segment.Index 0 }} <p:slate_violet>⋮</>{{ end }} {{ if .Error }}{{ .Error }}{{ else }} {{ .Full }}{{ end }}"
+        background: transparent
+        foreground: p:muted_periwinkle
+        options:
+          cache_duration: 24h
+
+      - type: r
+        style: plain
+        template: "{{ if gt .Segment.Index 0 }} <p:slate_violet>⋮</>{{ end }} {{ if .Error }}{{ .Error }}{{ else }} {{ .Full }}{{ end }}"
+        background: transparent
+        foreground: p:muted_periwinkle
+        options:
+          cache_duration: 24h
+
+      - type: go
+        style: plain
+        template: "{{ if gt .Segment.Index 0 }} <p:slate_violet>⋮</>{{ end }} {{ if .Error }}{{ .Error }}{{ else }} {{ .Full }}{{ end }}"
+        background: transparent
+        foreground: p:muted_periwinkle
+        options:
+          cache_duration: 24h
+
+      - type: battery
+        style: plain
+        template: '{{ if and (not .Error) (ne .State.String "Full") }}{{ if gt .Segment.Index 0 }} <p:slate_violet>⋮</>{{ end }} {{ if and (eq .State.String "Discharging") (lt .Percentage 15) }} {{ else }}{{ if and (eq .State.String "Discharging") (lt .Percentage 30) }}⚠ {{ else }}{{ .Icon }}{{ end }}{{ end }}{{ .Percentage }}%{{ end }}{{ .Error }}'
+        background: transparent
+        foreground: p:yellow_green
+        foreground_templates:
+          - '{{if and (eq .State.String "Discharging") (lt .Percentage 15) }}p:vermilion{{end}}'
+          - '{{if and (eq .State.String "Discharging") (lt .Percentage 30) }}p:peach_orange{{end}}'
+          - '{{if eq .State.String "Discharging"}}p:cerulean{{end}}'
+        options:
+          discharging_icon: "↯ "
+          charging_icon: "󰚥 "
+
+  - type: rprompt
+    overflow: hidden
+
+    segments:
+      - type: executiontime
+        style: plain
+        template: "{{ .FormattedMs }}"
+        background: transparent
+        foreground: p:amber
+        options:
+          style: round
+          threshold: 5000
+
+      - type: sysinfo
+        style: plain
+        template: "{{ if or (gt .Load1 15.0) (gt .Load5 15.0) (gt .Load15 15.0) }}{{ if gt .Segment.Index 0 }} <p:slate_violet>⋮</>{{ end }} ⚡{{ round .Load1 .Precision }} {{ round .Load5 .Precision }} {{ round .Load15 .Precision }}{{ end }}"
+        background: transparent
+        foreground: p:amber
+        foreground_templates:
+          - "{{ if or (gt .Load1 50.0) (gt .Load5 50.0) (gt .Load15 50.0) }}p:crimson{{end}}"
+          - "{{ if or (gt .Load1 30.0) (gt .Load5 30.0) (gt .Load15 30.0) }}p:peach_orange{{end}}"
+
+      - type: upgrade
+        style: plain
+        template: "{{ if gt .Segment.Index 0 }} <p:slate_violet>⋮</>{{ end }} \uf019"
+        background: transparent
+        foreground: p:sky_cyan
+        options:
+          cache_duration: 168h
+
+  - type: prompt
+    alignment: left
+    newline: true
+
+    segments:
+      - type: status
+        style: plain
+        template: ❱
+        background: transparent
+        foreground: p:yellow_green
+        foreground_templates:
+          - "{{ if gt .Code 0 }}p:soft_red{{ end }}"
+        options:
+          always_enabled: true
+
+tooltips:
+  - type: aws
+    tips:
+      - aws
+    style: plain
+    foreground: p:amber
+    template:  {{.Profile}}{{if .Region}}@{{.Region}}{{end}}
+  - type: git
+    tips:
+      - gg
+      - git
+    style: plain
+    foreground: p:amber
+    template: "<p:pale_azure>{{ if gt .Behind 0 }}⇣{{ .Behind }} {{ end }}{{ if gt .Ahead 0 }}⇡{{ .Ahead }} {{ end }}</>{{ if or (gt .Behind 0) (gt .Ahead 0) }}<p:slate_violet>⋮</>{{ end }}{{ if .Working.Changed }} ◌ {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} <p:slate_violet>⋮</>{{ end }}{{ if .Staging.Changed }} ● {{ .Staging.String }}{{ end }}"
+    options:
+      branch_icon: ""
+      commit_icon: "@"
+      fetch_status: true
+
+secondary_prompt:
+  template: "❱❱ "
+  foreground: p:slate_blue_gray
+  background: transparent
+
+transient_prompt:
+  template: "❱ "
+  foreground: p:yellow_green
+  background: transparent
+  foreground_templates:
+    - "{{ if gt .Code 0 }}p:soft_red{{ end }}"
+
+palette:
+  near_black: "#15161e"
+  dark_cobalt_blue: "#283457"
+  dark_midnight_navy: "#1a1b26"
+  deep_twilight: "#292e42"
+  slate_blue_gray: "#30313c"
+  slate_violet: "#565f89"
+  medium_gray: "#6c6c6c"
+  muted_periwinkle: "#a9b1d6"
+  soft_lavender: "#C0CAF5"
+  soft_violet: "#a485dd"
+  crimson: "#db4b4b"
+  vermilion: "#f3627a"
+  soft_red: "#ee6d85"
+  peach_orange: "#ff9e64"
+  amber: "#dfae67"
+  yellow_green: "#95c561"
+  cerulean: "#06A4CE"
+  seafoam_teal: "#73daca"
+  pale_azure: "#89ddff"
+  sky_cyan: "#7dcfff"
