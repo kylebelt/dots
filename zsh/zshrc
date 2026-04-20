@@ -4,10 +4,6 @@
 # Set default XDG config
 export EDITOR='nvim'
 export HOMEBREW_NO_ENV_HINTS=1
-export FZF_CTRL_R_OPTS="--layout=reverse --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
-  --color header:italic
-  --header 'Press CTRL-Y to copy command into clipboard'
-  --preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 
 # EZA Default config dir
 export EZA_CONFIG_DIR="$XDG_CONFIG_HOME/eza"
@@ -24,6 +20,9 @@ export PYTHON_AUTO_VRUN=true
 
 # Set the zinit and plugins directory
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+# FZF configs
+source ${ZDOTDIR}/fzf.zsh
 
 # Set brew paths
 eval "$(/opt/homebrew/bin/brew shellenv)"
