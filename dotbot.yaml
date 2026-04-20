@@ -47,6 +47,7 @@
         - zsh/zshrc
         - zsh/zshenv
     ~/.zshenv: zsh/zshenv
+    ~/.zprofile: zsh/zshenv
     ~/.config/zsh/.zshrc: zsh/zshrc
     ~/.config/zsh-patina:
 
