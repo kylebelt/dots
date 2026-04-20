@@ -100,6 +100,7 @@ zinit ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
 zinit ice wait lucid; zinit light trapd00r/LS_COLORS
 
 # Completion styling
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
 zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -116,14 +117,15 @@ zstyle ':fzf-tab:*' popup-min-size 100 25
 # SECTION: Autocomplete
 
 # Load completions after all plugins/snippets have registered compdef calls
+ZCOMPDUMP_FILE="${XDG_CACHE_HOME}/zsh/zcompdump"
 setopt extendedglob
 autoload -Uz compinit
-if [[ -n $HOME/zcompdump(#qN.mh+24) ]]; then
-  compinit
+if [[ -n ${ZCOMPDUMP_FILE}(#qN.mh+24) ]]; then
+  compinit -d ${ZCOMPDUMP_FILE}
 else
-  compinit -C
+  compinit -C -d ${ZCOMPDUMP_FILE}
 fi
-[[ $HOME/zcompdump -nt $HOME/zcompdump.zwc ]] && zcompile $HOME/zcompdump
+[[ ${ZCOMPDUMP_FILE} -nt ${ZCOMPDUMP_FILE}.zsc ]] && zcompile ${ZCOMPDUMP_FILE}
 zicdreplay
 
 # SECTION: History management
