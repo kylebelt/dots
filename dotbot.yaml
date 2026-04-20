@@ -37,8 +37,12 @@
     ~/.vim_functions: vim/vim_functions
     ~/.vundle: vim/vundle
     ~/.config/yazi:
-    ~/.config/zsh:
-      exclude: [.zshrc, zshenv]
+    ~/.config/zsh/:
+      glob: true
+      path: zsh/*
+      exclude:
+        - zsh/zshrc
+        - zsh/zshenv
     ~/.zshenv: zsh/zshenv
     ~/.config/zsh/.zshrc: zsh/zshrc
     ~/.config/zsh-patina:
