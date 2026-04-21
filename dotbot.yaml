@@ -2,6 +2,7 @@
     link:
       create: true
       relink: true
+      backup: true
     shell:
       quiet: true
 
@@ -36,6 +37,7 @@
     ~/.config/starship.toml:
       path: starship/starship.toml
       force: true
+    ~/.config/tealdeer:
     ~/.config/tmux/tmux.conf: tmux/tmux.conf
     ~/.vimrc: vim/vimrc
     ~/.vim_functions: vim/vim_functions
