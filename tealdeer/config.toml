@@ -39,8 +39,8 @@ archive_source = "https://github.com/tldr-pages/tldr/releases/latest/download/"
 tls_backend = "rustls-with-webpki-roots"
 
 [directories]
-cache_dir = "${XDG_CACHE_HOME}/tealdeer"
-custom_pages_dir = "${XDG_DATA_HOME}/tealdeer"
+cache_dir = "/Users/ccaio/.cache/tealdeer"
+custom_pages_dir = "/Users/ccaio/.local/share/tealdeer"
 
 [search]
-languages = ['en', 'pt-br']
+languages = ['en', 'pt_br']
