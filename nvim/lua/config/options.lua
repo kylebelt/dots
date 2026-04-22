@@ -23,5 +23,8 @@ vim.g.neovide_transparent_opacity = 0.7
 -- Auto change cwd to file path
 vim.opt.autochdir = true
 
+-- Fix esc sending alt by mistake
+vim.o.ttimeoutlen = 0
+
 -- Filled colored column
 -- vim.opt.colorcolumn = "88"

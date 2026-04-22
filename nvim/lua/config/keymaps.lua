@@ -19,3 +19,9 @@ vim.keymap.set("n", "<leader>qr", function()
   vim.cmd("mksession! " .. vim.fn.fnameescape(session))
   vim.cmd("restart source " .. vim.fn.fnameescape(session))
 end, { desc = "Restart Neovim" })
+
+-- Remaped line movement
+vim.keymap.set("n", "<A-J>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
+vim.keymap.set("n", "<A-K>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
+vim.keymap.set("v", "<A-J>", ":<C-u>execute \"'<,'>move '>+\" . v:count1<cr>gv=gv", { desc = "Move Down" })
+vim.keymap.set("v", "<A-K>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<cr>gv=gv", { desc = "Move Up" })
