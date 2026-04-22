@@ -1,4 +1,4 @@
-# yazi function
+# CD to current yazi directory when yazi quits
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	command yazi "$@" --cwd-file="$tmp"
@@ -24,3 +24,29 @@ nvim_switch_configuration () {
   fi
   NVIM_APPNAME=$config nvim "$@"
 }
+
+# Cache evals for faster loading
+_cache_eval() {
+  local cache="${XDG_CACHE_HOME}/zsh/${1}.zsh"
+  local bin=${commands[$1]}  # no subshell, uses zsh's $commands hash
+
+  if [[ ! -f $cache || $bin -nt $cache ]]; then
+    "$@" >| $cache
+  fi
+
+  source $cache
+}
+
+# Delete up to symbol instead of space
+backward-kill-to-symbol() {
+  local WORDCHARS='*?[]~&;!#$%^(){}<>'
+  zle backward-kill-word
+}
+zle -N backward-kill-to-symbol
+
+# Append last prompt word (used in vim mode with opt+.)
+function append-last-word { 
+  ((++CURSOR)); 
+  zle insert-last-word; 
+}
+zle -N append-last-word
