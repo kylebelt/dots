@@ -5,7 +5,10 @@ return {
       keywords = {
         SECTION = {
           icon = "󰚟 ",
-          color = "test",
+          color = "#ff75a0",
+        },
+        colors = {
+          section = { "#ff75a0" },
         },
       },
     })
