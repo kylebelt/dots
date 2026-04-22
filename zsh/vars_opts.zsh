@@ -8,6 +8,10 @@ setopt no_case_glob no_case_match # make cmp case sensitive
 setopt globdots # include dotfiles
 setopt interactive_comments # allow comments in shell
 
+# SECTION: Shell Options
+
+export EDITOR='nvim'
+
 # SECTION: History management
 
 HISTSIZE=50000
@@ -96,3 +100,4 @@ function zvm_config() {
   ZVM_VI_HIGHLIGHT_BACKGROUND=#dfae67           # Hex value
   ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold
 }
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"

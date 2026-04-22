@@ -7,11 +7,11 @@ export XDG_STATE_HOME="$HOME/.local/state"
 # ZSH config dir
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
-export EDITOR='nvim'
+# Remove duplicated paths from PATH
+typeset -U PATH path
 
 # EZA Default config dir
 export EZA_CONFIG_DIR="$XDG_CONFIG_HOME/eza"
-
 # AWS
 export SHOW_AWS_PROMPT=false # Fix AWS extension trash prompt
 export AWS_PROFILE='default'

@@ -37,7 +37,6 @@ zinit ice wait lucid atinit'AUTOCD=1'; zinit light z-shell/zsh-eza
 zinit ice wait lucid; zinit snippet OMZL::functions.zsh
 zinit ice wait lucid; zinit snippet OMZP::sudo
 zinit ice wait lucid; zinit snippet OMZP::aws
-zinit ice wait lucid; zinit snippet OMZP::command-not-found
 zinit ice wait lucid; zinit snippet OMZP::macos
 zinit ice wait lucid; zinit snippet OMZP::python
 zinit ice wait lucid; zinit snippet OMZP::colored-man-pages
@@ -120,3 +119,6 @@ fi
 
 #eval "$(oh-my-posh init zsh --config $HOME/.config/omp/tokyo_evenings.yaml)"
 #eval "$(starship init zsh)"
+
+# Ensure Homebrew path prepended last
+path=(/opt/homebrew/bin /opt/homebrew/sbin $path)
