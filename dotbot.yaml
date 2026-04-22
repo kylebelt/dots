@@ -22,6 +22,8 @@
     - dotbot-plugins/dotbot-brew/
 
 - link:
+    ~/.config/atuin:
+    ~/.config/bat:
     ~/.bash_profile: bash/bash_profile
     ~/.bash_functions: bash/bash_functions
     ~/.config/bottom:
