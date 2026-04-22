@@ -7,8 +7,7 @@ vim.opt.spell = false
 vim.opt.spelllang = { "en", "pt_br" }
 
 -- Disable delete to clipboard
----@diagnostic disable-next-line: undefined-field
-vim.opt.clipboard:append("unnamed")
+vim.opt.clipboard = ""
 
 -- Scrolloff config
 vim.opt.scrolloff = 8
@@ -26,5 +25,6 @@ vim.opt.autochdir = true
 -- Fix esc sending alt by mistake
 vim.o.ttimeoutlen = 0
 
--- Filled colored column
--- vim.opt.colorcolumn = "88"
+-- Fix split behavior
+vim.o.splitbelow = true
+vim.o.splitright = true
