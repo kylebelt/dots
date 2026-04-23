@@ -56,7 +56,7 @@ macos-icon-screen-color = #000000
 # Mouse
 mouse-hide-while-typing = true
 # Fix stuttery scroll in tmux
-mouse-scroll-multiplier = 0.30
+mouse-scroll-multiplier = 0.5
 
 # Updates
 auto-update = download
