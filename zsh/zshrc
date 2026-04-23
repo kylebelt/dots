@@ -84,24 +84,29 @@ zstyle ':fzf-tab:*' popup-min-size 150 25
 
 # SECTION: Vim Mode Keybinds
 
-  # Append last word of previous prompt
-  zvm_bindkey vicmd '\e.' append-last-word
-  zvm_bindkey viins '\e.' insert-last-word
+# Append last word of previous prompt
+zvm_bindkey vicmd '\e.' append-last-word
+zvm_bindkey viins '\e.' insert-last-word
 
-  # Kill word up to symbol with opt-backspace
-  zvm_bindkey viins '^[^?' backward-kill-to-symbol
-  zvm_bindkey vicmd '^[^?' backward-kill-to-symbol
-  # Kill word up to next space with opt-shift-backspace
-  zvm_bindkey viins '^[^H' backward-kill-word
-  zvm_bindkey vicmd '^[^H' backward-kill-word
+# Kill word up to symbol with opt-backspace
+zvm_bindkey viins '^[^?' backward-kill-to-symbol
+zvm_bindkey vicmd '^[^?' backward-kill-to-symbol
+# Kill word up to next space with opt-shift-backspace
+zvm_bindkey viins '^[^H' backward-kill-word
+zvm_bindkey vicmd '^[^H' backward-kill-word
 
-  # Bind ctrl+p/n and j/k (cmd) for history search in both modes
-  zvm_bindkey viins '^p' history-search-backward
-  zvm_bindkey viins '^n' history-search-forward
-  zvm_bindkey vicmd 'k' history-search-backward
-  zvm_bindkey vicmd 'j' history-search-forward
-  zvm_bindkey vicmd '^p' history-search-backward
-  zvm_bindkey vicmd '^n' history-search-forward
+# Bind ctrl+p/n and j/k (cmd) for history search in both modes
+zvm_bindkey viins '^p' history-search-backward
+zvm_bindkey viins '^n' history-search-forward
+zvm_bindkey vicmd 'k' history-search-backward
+zvm_bindkey vicmd 'j' history-search-forward
+zvm_bindkey vicmd '^p' history-search-backward
+zvm_bindkey vicmd '^n' history-search-forward
+
+# Sesh binds
+zvm_bindkey emacs '\es' sesh-sessions
+zvm_bindkey vicmd '\es' sesh-sessions
+zvm_bindkey viins '\es' sesh-sessions
 
 # SECTION: End of file evals
 
