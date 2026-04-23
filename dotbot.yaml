@@ -36,11 +36,13 @@
     ~/.config/nvim:
     ~/.config/omp:
     ~/.config/p10k:
+    ~/.config/sesh:
     ~/.config/starship.toml:
       path: starship/starship.toml
       force: true
     ~/.config/tealdeer:
     ~/.config/tmux/tmux.conf: tmux/tmux.conf
+    ~/.config/television:
     ~/.vimrc: vim/vimrc
     ~/.vim_functions: vim/vim_functions
     ~/.vundle: vim/vundle
