@@ -48,10 +48,12 @@ keybind = shift+alt+bracket_right=text:\x1b}
 macos-titlebar-style = tabs
 macos-option-as-alt = true
 # macos-shortcuts = allow
-macos-icon = retro
-macos-icon-frame = chrome
-macos-icon-ghost-color = #7A0404
-macos-icon-screen-color = #000000
+# macos-icon = retro
+# macos-icon-frame = chrome
+# macos-icon-ghost-color = #7A0404
+# macos-icon-screen-color = #000000
+macos-icon = custom
+macos-custom-icon = ~/.config/ghostty/themes/tokyo-night.icns
 
 # Mouse
 mouse-hide-while-typing = true
