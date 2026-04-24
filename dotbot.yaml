@@ -53,9 +53,12 @@
       exclude:
         - zsh/zshrc
         - zsh/zshenv
+        - zsh/zprofile
+        - zsh/fzf_profile.sh
     ~/.zshenv: zsh/zshenv
-    ~/.zprofile: zsh/zshenv
     ~/.config/zsh/.zshrc: zsh/zshrc
+    ~/.config/zsh/.zprofile: zsh/zprofile
+    ~/.local/bin/fzf-preview.sh: zsh/fzf-preview.sh
     ~/.config/zsh-patina:
 
 - brewfile:

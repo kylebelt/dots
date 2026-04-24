@@ -19,37 +19,39 @@ fi
 # SECTION: zinit and zstyle
 
 # p10k
-zinit ice depth=1; zinit light romkatv/powerlevel10k
+zinit ice depth=1
+zinit light romkatv/powerlevel10k
 
 # ZVM
-zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
 
 # Syntax highlighting
-zinit ice wait lucid as"program" from"gh-r" pick"zsh-patina-*/zsh-patina" atload'eval "$(zsh-patina activate)"'
+zinit ice as"program" from"gh-r" pick"zsh-patina-*/zsh-patina" atload'eval "$(zsh-patina activate)"'
 zinit light michel-kraemer/zsh-patina
 
 # Other plugins
-zinit ice wait lucid; zinit light zsh-users/zsh-completions
-zinit ice wait lucid; zinit light zsh-users/zsh-autosuggestions
-zinit ice wait lucid atinit'AUTOCD=1'; zinit light z-shell/zsh-eza
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+zinit ice atinit'AUTOCD=1'
+zinit light z-shell/zsh-eza
 
 # Add in snippets
-zinit ice wait lucid; zinit snippet OMZL::functions.zsh
-zinit ice wait lucid; zinit snippet OMZP::sudo
-zinit ice wait lucid; zinit snippet OMZP::aws
-zinit ice wait lucid; zinit snippet OMZP::macos
-zinit ice wait lucid; zinit snippet OMZP::python
-zinit ice wait lucid; zinit snippet OMZP::colored-man-pages
-zinit ice wait lucid; zinit snippet OMZP::uv
-zinit ice wait lucid; zinit snippet OMZL::clipboard.zsh
-zinit ice wait lucid; zinit snippet OMZL::termsupport.zsh
+zinit snippet OMZL::functions.zsh
+zinit snippet OMZP::sudo
+zinit snippet OMZP::aws
+zinit snippet OMZP::python
+zinit snippet OMZP::colored-man-pages
+zinit snippet OMZP::uv
+zinit snippet OMZL::clipboard.zsh
+zinit snippet OMZL::termsupport.zsh
 
- zinit ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
-     atpull'%atclone' pick"clrs.zsh" nocompile'!' \
-     atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
-zinit ice wait lucid; zinit light trapd00r/LS_COLORS
+zinit ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
+  atpull'%atclone' pick"clrs.zsh" nocompile'!' \
+  atload'zstyle ":completion:*" list-colors “${(s.:.)LS_COLORS}”'
+zinit light trapd00r/LS_COLORS
 
-# SECTION: Autocomplete 
+# SECTION: Autocomplete
 
 # Load tab completion
 zinit light Aloxaf/fzf-tab
@@ -64,23 +66,71 @@ fi
 [[ ${ZCOMPDUMP_FILE} -nt ${ZCOMPDUMP_FILE}.zsc ]] && zcompile ${ZCOMPDUMP_FILE}
 zicdreplay
 
-# Completion styling
-zstyle ':completion:*' menu no # Tab opens cmp menu
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} ma=0\;33 # colorize cmp menu
-zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache" # completion cache
+# Completion settings
+zstyle ':completion:*' menu no
+zstyle ':completion:*' completer _complete _match _approximate
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' squeeze-slashes false # allow /*/ completion
-zstyle ':completion:*:git-checkout:*' sort false 
 
-# fzf-tab
-zstyle ':fzf-tab:*' fzf-flags --height=60% --cycle --preview-window=right:60% --layout=reverse
-zstyle ':fzf-tab:complete:(cp|cd|nvim|z|vim|eza|bat)*' fzf-preview \
-  'if [ -d $realpath ]; then 
-    eza --icons=always --tree --color=always --level=2 $realpath; 
-  else 
-    bat -n --color=always --line-range :500 $realpath; 
-  fi'
-zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-zstyle ':fzf-tab:*' popup-min-size 150 25
+# Performance
+zstyle ':completion:*' accept-exact '*(N)' # Accepts exact matches immediately
+zstyle ':completion:*' file-sort modification
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache" # completion cache
+
+# Menu Formatting
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS} ma=0\;33
+zstyle ':completion:*:descriptions' format ' %d'
+zstyle ':completion:*:messages' format '%F{purple}󰍡 %d%f'
+zstyle ':completion:*:warnings' format '%F{red} No Match%f'
+zstyle ':completion:*' group-name ''
+zstyle ':fzf-tab:*' switch-group ',' '.'
+zstyle ':fzf-tab:*' fzf-flags --multi --height=70% --cycle --preview-window=right:60% --layout=reverse --ignore-case \
+  --header='?:Preview | C-Space:Mark | C-a:All | C-d/u:Scroll | ,/.:Group'
+zstyle ':fzf-tab:*' fzf-bindings \
+  '?:toggle-preview' \
+  'ctrl-a:select-all' \
+  'ctrl-d:preview-half-page-down' \
+  'ctrl-u:preview-half-page-up' \
+  'ctrl-space:toggle+down'
+
+# TMUX Formatting
+if [[ -n $TMUX ]]; then
+  zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+  zstyle ':fzf-tab:*' popup-min-size 150 25
+fi
+
+# Ignore internal functions
+zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
+
+# Git Specific
+zstyle ':completion:*:git-checkout:*' sort false
+
+# Catchall preview command
+zstyle ':fzf-tab:complete:(cd|cat|bat|code|vim|vim|nvim|eza|ls|fd|find|cp|mv|rm)*' fzf-preview 'fzf-preview.sh $realpath'
+
+# Process completion
+zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm"
+zstyle ':fzf-tab:complete:kill:argument-rest' fzf-preview \
+  '[[ $group == "[process ID]" ]] && ps -p $word -o comm='
+zstyle ':fzf-tab:complete:kill:argument-rest' fzf-flags --preview-window=down:10:wrap
+
+# Environment variable preview
+zstyle ':fzf-tab:complete:(-parameter-|-brace-parameter-|export|unset|expand):*' \
+  fzf-preview 'echo ${(P)word}'
+zstyle ':fzf-tab:complete:(-parameter-|-brace-parameter-|export|unset|expand):*' \
+  fzf-flags --preview-window=down:10:wrap
+
+# Show tldr and man info in preview section
+zstyle ':fzf-tab:complete:(\\|*/|)man:*' fzf-preview 'man $word'
+zstyle ':fzf-tab:complete:tldr:argument-1' fzf-preview 'tldr --color always $word'
+
+# Show tldr info of cli commands in preview section
+zstyle ':fzf-tab:complete:-command-:*' fzf-preview \
+  '(out=$(tldr --color always "$word" 2>/dev/null) && echo "$out" || \
+    out=$(MANWIDTH=$FZF_PREVIEW_COLUMNS man "$word" 2>/dev/null) && echo "$out" || \
+    out=$(which "$word") && echo "$out" || echo "${(P)word}")'
+zstyle ':fzf-tab:complete:-command-:*' fzf-flags --height=60% --preview-window=right:65%:wrap
 
 # SECTION: Vim Mode Keybinds
 
@@ -116,7 +166,7 @@ _cache_eval zoxide init --cmd cd zsh
 _cache_eval atuin init zsh --disable-up-arrow
 unfunction _cache_eval
 
-if [[ ! -f $XDG_CONFIG_HOME/p10k/tokyo-evenings.zsh ]]; then 
+if [[ ! -f $XDG_CONFIG_HOME/p10k/tokyo-evenings.zsh ]]; then
   source $XDG_CONFIG_HOME/p10k/p10k.zsh
 else
   source $XDG_CONFIG_HOME/p10k/tokyo-evenings.zsh
@@ -124,6 +174,3 @@ fi
 
 #eval "$(oh-my-posh init zsh --config $HOME/.config/omp/tokyo_evenings.yaml)"
 #eval "$(starship init zsh)"
-
-# Ensure Homebrew path prepended last
-path=(/opt/homebrew/bin /opt/homebrew/sbin $path)

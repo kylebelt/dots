@@ -1,0 +1,45 @@
+# SECTION: Homebrew setup
+typeset -x HOMEBREW_PREFIX="/opt/homebrew"
+typeset -x HOMEBREW_REPOSITORY=$HOMEBREW_PREFIX
+
+# Homebrew Paths and Performance opts
+typeset -x HOMEBREW_CELLAR="$HOMEBREW_PREFIX/Cellar" \
+  HOMEBREW_BAT=1 \
+  HOMEBREW_BOOTSNAP=1 \
+  HOMEBREW_CASK_OPTS="--no-quarantine" \
+  HOMEBREW_CLEANUP_MAX_AGE_DAYS=7 \
+  HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS=5 \
+  HOMEBREW_DISPLAY_INSTALL_TIMES=1 \
+  HOMEBREW_NO_ANALYTICS=1 \
+  HOMEBREW_NO_INSECURE_REDIRECT=1 \
+  HOMEBREW_UPGRADE_GREEDY=1 \
+  HOMEBREW_NO_ENV_HINTS=1
+
+# SECTION: PATH setup
+typeset -U path fpath
+path=(
+  $HOME/.cargo/bin(N)
+  $HOME/.local/bin(N)
+  $HOMEBREW_PREFIX/{bin,sbin}(N)
+  $path
+)
+
+fpath=(
+  $HOMEBREW_PREFIX/share/zsh/site-functions(N)
+  $fpath
+)
+
+# Ensure path arrays are unique and exported
+typeset -x -U PATH path FPATH fpath MANPATH manpath
+typeset -x -UT INFOPATH infopath
+
+# SECTION: Application Paths
+
+# EZA config
+typeset -x EZA_CONFIG_DIR="$XDG_CONFIG_HOME/eza"
+
+# AWS
+typeset -x AWS_CONFIG_DIR="${XDG_CONFIG_HOME}/aws"
+
+# Tealdeer config path
+typeset -x TEALDEER_CONFIG_DIR="${XDG_CONFIG_HOME}/tealdeer"
