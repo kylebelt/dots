@@ -2,13 +2,16 @@
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "logo": {
     "type": "chafa",
-    "source": "${XDG_CONFIG_HOME}/fastfetch/senshi.jpg",
-    "height": 20,
+    "source": "${XDG_CONFIG_HOME}/fastfetch/eh.png",
+    "height": 17,
     "chafa": {
       "symbols": "braille",
-      "ditherMode": "DIFFUSION",
-      "colorSpace": "DIN99D",
+      "ditherMode": "ORDERED",
+      "colorSpace": "RGB",
       "fgOnly": true
+    },
+    "padding": {
+      "top": 1
     }
   },
   "modules": [
@@ -29,7 +32,7 @@
     // "font",
     // "cursor",
     // "terminal",
-    // "terminalfont",
+    "terminalfont",
     "cpu",
     "gpu",
     "memory",
@@ -37,9 +40,9 @@
     // "disk",
     // "localip",
     "battery",
-    // "poweradapter",
+    "poweradapter",
     "locale",
-    // "break",
+    "separator",
     "colors"
   ]
 }
