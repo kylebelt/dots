@@ -23,8 +23,11 @@ vim.g.neovide_transparent_opacity = 0.7
 vim.opt.autochdir = true
 
 -- Fix esc sending alt by mistake
-vim.o.ttimeoutlen = 0
+vim.opt.ttimeoutlen = 0
 
 -- Fix split behavior
-vim.o.splitbelow = true
-vim.o.splitright = true
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
+-- Disable horizontal mouse scroll
+vim.opt.mousescroll = "ver:3,hor:0"
