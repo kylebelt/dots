@@ -58,8 +58,10 @@
     ~/.zshenv: zsh/zshenv
     ~/.config/zsh/.zshrc: zsh/zshrc
     ~/.config/zsh/.zprofile: zsh/zprofile
-    ~/.local/bin/fzf-preview.sh: zsh/fzf-preview.sh
     ~/.config/zsh-patina:
+    ~/.local/bin/fzf-preview: scripts/fzf-preview
+    ~/.local/bin/fzf-frecent: scripts/fzf-frecent
+    ~/.local/bin/tmux-window-picker: scripts/tmux-window-picker
 
 - brewfile:
     - brew/Brewfile
