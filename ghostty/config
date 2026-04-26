@@ -43,6 +43,7 @@ keybind = global:ctrl+grave_accent=toggle_quick_terminal
 keybind = shift+alt+backspace=text:\x1b\x08
 keybind = shift+alt+bracket_left=text:\x1b{
 keybind = shift+alt+bracket_right=text:\x1b}
+keybind = shift+space=text:\x20
 
 # MacOS
 macos-titlebar-style = tabs
