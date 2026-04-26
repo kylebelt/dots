@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+list_cmd="tmux list-windows -a -F '#{window_activity} #{session_name}:#{window_index} #{window_name} | #{session_name} (#{window_index}) [#{pane_current_command}]' | \
+  grep -v '^[0-9]* $(tmux display-message -p '#{session_name}:#{window_index}') ' | \
+  sort -rn | cut -d' ' -f2-"
+
+target=$(
+  eval "$list_cmd" |
+    fzf --reverse --ansi \
+      --with-nth '2..' \
+      --prompt ' ' \
+      --header 'C-x:Kill Window | C-u/d:Scroll' \
+      --preview "tmux capture-pane -t {1} -ep -S - 2>/dev/null | tail -n $(tput lines) || echo 'No preview available'" \
+      --preview-window 'right:60%' --height='100%' \
+      --exit-0 \
+      --bind 'ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up' \
+      --bind "ctrl-x:execute-silent(tmux kill-window -t {1})+reload($list_cmd)" |
+    awk '{print $1}'
+)
+
+[ -n "$target" ] && tmux switch-client -t "$target"
