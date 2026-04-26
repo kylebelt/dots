@@ -32,6 +32,8 @@
     ~/.config/fastfetch:
     ~/.config/ghostty:
     ~/.config/karabiner:
+      glob: true
+      path: karabiner/*
     ~/.config/lazygit:
     ~/.config/nvim:
     ~/.config/omp:
