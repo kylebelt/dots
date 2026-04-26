@@ -59,7 +59,7 @@ source ${HOMEBREW_REPOSITORY}/opt/zinit/zinit.zsh
 typeset -x FZF_DEFAULT_COMMAND='fd --follow --hidden --strip-cwd-prefix --exclude .git --exclude node_modules --exclude .venv --exclude .env --exclude .DS_Store --exclude "*.pyc"'
 typeset -x FZF_DEFAULT_OPTS="--multi --cycle --height=40% --preview-window=right:60% \
   --layout=reverse --info=right --prompt='❱ ' --pointer='▶' --marker='✓' --separator='┄' --padding=1 \
-  --preview 'fzf-preview.sh {}' \
+  --preview '~/.local/bin/fzf-preview {}' \
   --header '?:Preview | C-a:Select All | C-d/u:Scroll'
   --bind '?:toggle-preview,ctrl-a:select-all,ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up' \
   --bind 'tab:toggle+down,shift-tab:toggle+up'"

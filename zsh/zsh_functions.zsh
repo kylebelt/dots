@@ -58,7 +58,7 @@ function sesh-sessions() {
     exec </dev/tty
     exec <&1
     local session
-    session=$(sesh list -t -c | fzf --height 40% --reverse --border-label ' sesh ' --border --prompt '⚡  ')
+    session=$(sesh list -t -c -i -d | fzf --height 40% --reverse --preview='' --border-label ' sesh ' --border --prompt '⚡  ')
     zle reset-prompt >/dev/null 2>&1 || true
     [[ -z "$session" ]] && return
     sesh connect $session
@@ -74,7 +74,7 @@ function zsh-cleanup() {
 }
 
 # Enhanced tree
-tree() {
+function tree() {
   local level=${1:-1} # Default level if none is provided
   eza --tree --level="$level" -I node_modules --git-ignore
 }

@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+dirs=("$@")
+oldfiles=$(nvim --headless \
+  -c 'redir => m | silent oldfiles | redir END | call writefile(split(m, "\n"), "/dev/stdout") | qa' \
+  2>/dev/null | sed 's/^[0-9]*: //')
+
+fd --type file \
+  --exclude .git \
+  --exclude node_modules \
+  --exclude .venv \
+  --exclude .DS_Store \
+  . "${dirs[@]}" |
+  awk '
+    NR==FNR { rank[$0]=NR; next }
+    $0 in rank { freq[rank[$0]]=$0; next }
+    { rest[++r]=$0 }
+    END {
+      for(i=1;i<=NR;i++) if(i in freq) print freq[i]
+      for(i=1;i<=r;i++) print rest[i]
+    }
+  ' <(echo "$oldfiles") - |
+  fzf --no-sort -d / --with-nth 5.. \
+    --height=100% --multi --cycle \
+    --preview-window=right:60% \
+    --layout=reverse --info=right \
+    --prompt='❱ ' --pointer='▶' --marker='✓' \
+    --separator='┄' --padding=0 \
+    --preview 'fzf-preview {}' \
+    --header '?:Preview | C-a:Select All | C-d/u:Scroll' \
+    --bind '?:toggle-preview,ctrl-a:select-all' \
+    --bind 'ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up' \
+    --bind 'tab:toggle+down,shift-tab:toggle+up' |
+  xargs nvim

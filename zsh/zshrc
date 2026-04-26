@@ -107,7 +107,7 @@ zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
 zstyle ':completion:*:git-checkout:*' sort false
 
 # Catchall preview command
-zstyle ':fzf-tab:complete:(cd|cat|bat|code|vim|vim|nvim|eza|ls|fd|find|cp|mv|rm)*' fzf-preview 'fzf-preview.sh $realpath'
+zstyle ':fzf-tab:complete:(cd|cat|bat|code|vim|vim|nvim|eza|ls|fd|find|cp|mv|rm)*' fzf-preview '~/.local/bin/fzf-preview $realpath'
 
 # Process completion
 zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm"
@@ -154,9 +154,15 @@ zvm_bindkey vicmd '^p' history-search-backward
 zvm_bindkey vicmd '^n' history-search-forward
 
 # Sesh binds
-zvm_bindkey emacs '\es' sesh-sessions
-zvm_bindkey vicmd '\es' sesh-sessions
-zvm_bindkey viins '\es' sesh-sessions
+zvm_bindkey vicmd '^K' sesh-sessions
+zvm_bindkey viins '^K' sesh-sessions
+
+# Fix Shift+Space with extended-keys/CSI-u (sends \e[32;2u instead of space)
+zvm_bindkey viins '\e[32;2u' self-insert
+zvm_bindkey vicmd '\e[32;2u' self-insert
+
+# Fix \ not sending literal \
+zvm_bindkey viins '\\' self-insert
 
 # SECTION: End of file evals
 
@@ -172,5 +178,5 @@ else
   source $XDG_CONFIG_HOME/p10k/tokyo-evenings.zsh
 fi
 
-#eval "$(oh-my-posh init zsh --config $HOME/.config/omp/tokyo_evenings.yaml)"
+#eval ""
 #eval "$(starship init zsh)"
