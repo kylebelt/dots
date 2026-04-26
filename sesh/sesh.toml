@@ -1,0 +1,64 @@
+#:schema https://github.com/joshmedeski/sesh/raw/main/sesh.schema.json
+
+blacklist = ["scratch"]
+
+import = ["${XDG_CONFIG_HOME}/aws/sesh.toml"]
+
+[default_session]
+startup_command = "ll"
+preview_command = "eza --all --icons=always --color=always --tree --level 2 -I '.DS_Store|.env|.venv|env|venv|node_modules' --git-ignore {}"
+
+[[session]]
+name = "dotfiles"
+path = "~/.dotfiles/"
+startup_command = "vim -c 'lua Snacks.picker.smart()'"
+preview_command = "eza --icons=always --color=always --tree --level=2 -I '.DS_Store|.env|.venv|env|venv|node_modules' --git-ignore {}"
+
+[[session]]
+name = "alfretam"
+path = "~/workdesk/alfretam"
+startup_command = "yazi"
+preview_command = "eza --icons=always --color=always --tree --level=2 -I 'env|venv|node_modules|*png' {}"
+windows = ["source", "harmony", "helpers"]
+
+[[session]]
+name = "Downloads "
+path = "~/Downloads"
+startup_command = "yazi"
+
+[[window]]
+name = "vim"
+startup_script = "nvim -c 'lua Snacks.picker.smart()'"
+
+[[window]]
+name = "yazi"
+startup_script = "yazi"
+
+[[window]]
+name = "lazygit"
+startup_script = "lazygit"
+
+[[window]]
+name = "harmony"
+path = "~/workdesk/alfretam/harmony"
+startup_script = "nvim -c 'lua Snacks.picker.smart()'"
+
+[[window]]
+name = "helpers"
+path = "~/workdesk/alfretam/helpers"
+startup_script = "nvim -c 'lua Snacks.picker.smart()'"
+
+[[window]]
+name = "source"
+path = "~/workdesk/alfretam/source/src"
+startup_script = "nvim -c 'lua Snacks.picker.smart()'"
+
+[[wildcard]]
+pattern = '~/.config/**'
+startup_command = "nvim -c 'lua Snacks.picker.smart()'"
+preview_command = "eza --all --icons=always --color=always --tree --level 2 -I '.DS_Store|.env|.venv|env|venv|node_modules' --git-ignore {}"
+
+[[wildcard]]
+pattern = '~/.dotfiles/**'
+startup_command = "nvim -c 'lua Snacks.picker.smart()'"
+preview_command = "eza --all --icons=always --color=always --tree --level 2 -I '.DS_Store|.env|.venv|env|venv|node_modules' --git-ignore {}"
