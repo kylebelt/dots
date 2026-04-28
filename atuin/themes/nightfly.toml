@@ -1,0 +1,13 @@
+[theme]
+name = "nightfly"
+parent = "default"
+
+[colors]
+AlertInfo = "#21c7a8"
+AlertWarn = "#e3d18a"
+AlertError = "#ff5874"
+Annotation = "#4b6479"
+Base = "#acb4c2"
+Guidance = "#f78c6c"
+Important = "#82aaff"
+Title = "#c792ea"
