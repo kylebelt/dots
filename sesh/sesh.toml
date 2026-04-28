@@ -28,7 +28,7 @@ startup_command = "yazi"
 
 [[window]]
 name = "vim"
-startup_script = "nvim -c 'lua Snacks.picker.smart()'"
+startup_script = "nvim -c 'Yazi cwd'"
 
 [[window]]
 name = "yazi"
@@ -55,10 +55,10 @@ startup_script = "nvim -c 'lua Snacks.picker.smart()'"
 
 [[wildcard]]
 pattern = '~/.config/**'
-startup_command = "nvim -c 'lua Snacks.picker.smart()'"
-preview_command = "eza --all --icons=always --color=always --tree --level 2 -I '.DS_Store|.env|.venv|env|venv|node_modules' --git-ignore {}"
+startup_command = "nvim {}"
+preview_command = "eza --all --follow-symlinks --icons=always --color=always --tree --level 2 -I '.DS_Store|.env|.venv|env|venv|node_modules' --git-ignore {}"
 
 [[wildcard]]
 pattern = '~/.dotfiles/**'
-startup_command = "nvim -c 'lua Snacks.picker.smart()'"
-preview_command = "eza --all --icons=always --color=always --tree --level 2 -I '.DS_Store|.env|.venv|env|venv|node_modules' --git-ignore {}"
+startup_command = "nvim {}"
+preview_command = "eza --all --follow-symlinks --icons=always --color=always --tree --level 2 -I '.DS_Store|.env|.venv|env|venv|node_modules' --git-ignore {}"
