@@ -1,0 +1,14 @@
+[manager]
+ratio = [1, 2, 5]
+
+[plugin]
+prepend_fetchers = [
+  { id = "git", url = "*", run = "git", group = "git" },
+  { id = "git", url = "*/", run = "git", group = "git" },
+]
+
+prepend_previewers = [
+  { url = "*.md", run = 'piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark "$1"' },
+  { url = "*.csv", run = 'piper -- duckdb -init ~/.duckdbrc -c "SELECT * FROM \"$1\";" 2> /dev/null' },
+  { mime = "application/sqlite3", run = 'piper -- sqlite3 "$1" ".schema --indent"' },
+]
