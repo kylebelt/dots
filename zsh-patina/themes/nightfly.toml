@@ -1,0 +1,29 @@
+# Nightfly theme for zsh-patina
+# Based on bluz71/vim-nightfly-colors
+
+"comment" = "#7c8f8f"
+"string" = "#ecc48d"
+"keyword.operator.regexp" = "#a1cd5e"
+"constant.character.escape" = "#e3d18a"
+"constant.numeric.integer.decimal.file-descriptor" = "#f78c6c"
+"variable.parameter" = "#c792ea"
+"variable.other" = "#e3d18a"
+"punctuation.definition.variable" = "#e3d18a"
+"variable.function" = "#82aaff"
+"variable.language.tilde" = "#c792ea"
+"keyword" = "#c792ea"
+"storage" = "#c792ea"
+"support" = "#7fdbca"
+"entity.name.function" = "#ecc48d"
+"punctuation.section" = "#ecc48d"
+
+# history expansions
+"meta.group.expansion.history" = "#ecc48d"
+
+# reset command substitutions to terminal defaults
+"meta.group.expansion.command.parens" = {}
+
+# dynamic items
+"dynamic.callable" = "#7fdbca"
+"dynamic.callable.missing" = "#fc514e"
+"dynamic.path" = { underline = true }

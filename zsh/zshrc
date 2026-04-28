@@ -97,7 +97,7 @@ zstyle ':fzf-tab:*' fzf-bindings \
 # TMUX Formatting
 if [[ -n $TMUX ]]; then
   zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-  zstyle ':fzf-tab:*' popup-min-size 150 25
+  zstyle ':fzf-tab:*' popup-min-size 150 40
 fi
 
 # Ignore internal functions
@@ -175,7 +175,7 @@ unfunction _cache_eval
 if [[ ! -f $XDG_CONFIG_HOME/p10k/tokyo-evenings.zsh ]]; then
   source $XDG_CONFIG_HOME/p10k/p10k.zsh
 else
-  source $XDG_CONFIG_HOME/p10k/tokyo-evenings.zsh
+  source $XDG_CONFIG_HOME/p10k/p10k-nightfly.zsh
 fi
 
 #eval ""

@@ -1,0 +1,21 @@
+gui:
+  theme:
+    activeBorderColor:
+      - "#7aa2f7" # Blue
+      - bold
+    inactiveBorderColor:
+      - "#414868" # Terminal Black
+    optionsTextColor:
+      - "#7dcfff" # Cyan
+    selectedLineBgColor:
+      - "#2e3c64" # Selection Background
+    selectedRangeBgColor:
+      - "#2e3c64" # Selection Background
+    cherryPickedCommitBgColor:
+      - "#414868"
+    cherryPickedCommitFgColor:
+      - "#c0caf5"
+    unstagedChangesColor:
+      - "#f7768e" # Red
+    defaultFgColor:
+      - "#c0caf5" # Foreground

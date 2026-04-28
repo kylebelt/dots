@@ -1,6 +1,6 @@
 # Theme
-config-file = themes/tokyo-dark
-background-opacity = 0.85
+config-file = themes/nightfly
+background-opacity = 0.90
 background-blur = true
 background-blur-radius = 25
 
