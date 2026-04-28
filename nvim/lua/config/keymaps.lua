@@ -28,3 +28,15 @@ vim.keymap.set("v", "<A-K>", ":<C-u>execute \"'<,'>move '<-\" . (v:count1 + 1)<c
 
 -- opt+backspace: delete back word (stops at punctuation)
 vim.keymap.set("i", "<M-BS>", "<C-w>", opts)
+
+-- Paste preserving default register
+vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste preserving the default register" })
+
+-- Add <number>j/k to Jumplist
+vim.keymap.set({ "n", "x" }, "j", function()
+  return vim.v.count > 1 and "m'" .. vim.v.count .. "j" or "j"
+end, { noremap = true, expr = true })
+
+vim.keymap.set({ "n", "x" }, "k", function()
+  return vim.v.count > 1 and "m'" .. vim.v.count .. "k" or "k"
+end, { noremap = true, expr = true })

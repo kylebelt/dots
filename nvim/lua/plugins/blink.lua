@@ -6,7 +6,7 @@ return {
     },
     completion = {
       menu = {
-        auto_show_delay_ms = 500,
+        auto_show_delay_ms = 300,
       },
     },
   },

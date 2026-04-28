@@ -1,11 +1,9 @@
 return {
   {
     "xiyaowong/transparent.nvim",
-    config = function()
-      require("transparent").setup({
-        exclude_groups = { "CursorLine", "CursorLineNr" },
-      })
-    end,
+    opts = {
+      exclude_groups = { "CursorLine", "CursorLineNr" },
+    },
   },
 
   {
@@ -100,22 +98,20 @@ return {
     "EdenEast/nightfox.nvim",
     lazy = false,
     priority = 1000,
-    config = function()
-      require("nightfox").setup({
-        options = {
-          styles = {
-            comments = "italic",
-            keywords = "bold",
-            types = "italic,bold",
-            variables = "bold",
-            constants = "bold",
-            functions = "italic",
-            operators = "bold",
-            strings = "italic",
-          },
+    opts = {
+      options = {
+        styles = {
+          comments = "italic",
+          keywords = "bold",
+          types = "italic,bold",
+          variables = "bold",
+          constants = "bold",
+          functions = "italic",
+          operators = "bold",
+          strings = "italic",
         },
-      })
-    end,
+      },
+    },
   },
   {
     "savq/melange-nvim",
@@ -144,35 +140,27 @@ return {
     lazy = false,
     priority = 1000,
     dependencies = { "rktjmp/lush.nvim" },
-    config = function()
-      require("bluloco").setup({
-        style = "dark",
-        italics = true,
-      })
-    end,
+    opts = {
+      style = "dark",
+      italics = true,
+    },
   },
 
   {
     "miikanissi/modus-themes.nvim",
     lazy = false,
     priority = 1000,
-    config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require("modus-themes").setup({
-        style = "modus_operandi",
-        dim_inactive = true,
-        hide_inactive_statusline = false,
-      })
-    end,
+    opts = {
+      style = "modus_operandi",
+      dim_inactive = true,
+      hide_inactive_statusline = false,
+    },
   },
 
   {
     "https://gitlab.com/shmerl/neogotham",
     lazy = false, -- to make sure it's loaded on startup
     priority = 1000, -- to load before other plugins
-    config = function()
-      require("neogotham").setup({})
-    end,
   },
 
   {
@@ -195,12 +183,10 @@ return {
     "scottmckendry/cyberdream.nvim",
     lazy = false,
     priority = 1000,
-    config = function()
-      require("cyberdream").setup({
-        theme = "dark", -- auto/dark/light
-        italic_comments = true,
-      })
-    end,
+    opts = {
+      theme = "dark", -- auto/dark/light
+      italic_comments = true,
+    },
   },
 
   {
@@ -213,13 +199,11 @@ return {
     "rebelot/kanagawa.nvim",
     lazy = false,
     priority = 1000,
-    config = function()
-      require("kanagawa").setup({
-        theme = "wave", -- wave/lotus/dragon
-        undercurl = true,
-        dimInactive = true,
-      })
-    end,
+    opts = {
+      theme = "wave", -- wave/lotus/dragon
+      undercurl = true,
+      dimInactive = true,
+    },
   },
 
   {
@@ -268,5 +252,22 @@ return {
 
   {
     "NTBBloodbath/doom-one.nvim",
+  },
+
+  {
+    "bluz71/vim-nightfly-colors",
+    name = "nightfly",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.g.nightflyWinSeparator = 2
+      vim.g.nightflyCursorColor = true
+    end,
+  },
+
+  {
+    "oxfist/night-owl.nvim",
+    lazy = false,
+    priority = 1000,
   },
 }

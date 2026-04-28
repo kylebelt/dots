@@ -9,7 +9,21 @@
 
 -- Set spell check and wrapping only for selected filetypes
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "markdown", "text", "gitcommit" },
+  pattern = {
+    "markdown",
+    "markdown.mdx",
+    "text",
+    "gitcommit",
+    "plaintex",
+    "typst",
+    "tex",
+    "latex",
+    "rst",
+    "asciidoc",
+    "org",
+    "norg",
+    "mail",
+  },
   callback = function()
     vim.opt_local.spell = true
     vim.opt_local.wrap = true

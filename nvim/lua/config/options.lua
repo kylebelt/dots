@@ -31,3 +31,14 @@ vim.opt.splitright = true
 
 -- Disable horizontal mouse scroll
 vim.opt.mousescroll = "ver:3,hor:0"
+
+-- Improve line separators
+vim.opt.fillchars = {
+  horiz = "━",
+  horizup = "┻",
+  horizdown = "┳",
+  vert = "┃",
+  vertleft = "┫",
+  vertright = "┣",
+  verthoriz = "╋",
+}

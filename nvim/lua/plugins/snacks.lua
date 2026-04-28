@@ -57,6 +57,10 @@ return {
       :map("<leader>ut")
   end,
   opts = {
+    -- Disable explorer in favor of yazi
+    explorer = {
+      enabled = false,
+    },
     dashboard = {
       preset = {
         header = header,
@@ -66,10 +70,6 @@ return {
       sources = {
         explorer = {
           follow_file = false,
-          -- Adding preview creates a buffer 7 that asks to be saved at exit :/
-          -- layout = {
-          --   preview = true,
-          -- },
         },
         keymaps = {
           layout = function()
