@@ -154,8 +154,8 @@ zvm_bindkey vicmd '^p' history-search-backward
 zvm_bindkey vicmd '^n' history-search-forward
 
 # Sesh binds
-zvm_bindkey vicmd '^K' sesh-sessions
-zvm_bindkey viins '^K' sesh-sessions
+zvm_bindkey vicmd '^[s' sesh-sessions
+zvm_bindkey viins '^[s' sesh-sessions
 
 # Fix Shift+Space with extended-keys/CSI-u (sends \e[32;2u instead of space)
 zvm_bindkey viins '\e[32;2u' self-insert
