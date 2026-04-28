@@ -29,6 +29,7 @@
     ~/.bash_functions: bash/bash_functions
     ~/.config/bottom:
     ~/.config/cmux:
+    ~/.duckdbrc: duckdb/duckdbrc
     ~/.config/eza:
     ~/.config/fastfetch:
     ~/.config/ghostty:
