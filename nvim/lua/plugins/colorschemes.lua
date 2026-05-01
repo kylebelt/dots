@@ -1,6 +1,34 @@
+-- Load only the current scheme, lazy load the rest
+local current = (function()
+  local f = io.open(vim.fn.stdpath("data") .. "/colorscheme", "r")
+  if not f then
+    return "tokyonight"
+  end
+  local v = f:read("*l")
+  f:close()
+  return v or "tokyonight"
+end)()
+
+local function is_lazy(plugin_name)
+  local handle = vim.uv.fs_scandir(vim.fn.stdpath("data") .. "/lazy/" .. plugin_name .. "/colors")
+  if not handle then
+    return true
+  end
+  while true do
+    local name = vim.uv.fs_scandir_next(handle)
+    if not name then
+      return true
+    end
+    if name:gsub("%.lua$", ""):gsub("%.vim$", "") == current then
+      return false
+    end
+  end
+end
+
 return {
   {
     "xiyaowong/transparent.nvim",
+    lazy = false,
     opts = {
       exclude_groups = { "CursorLine", "CursorLineNr" },
     },
@@ -9,42 +37,42 @@ return {
   {
     "ember-theme/nvim",
     name = "ember",
-    lazy = false,
+    lazy = is_lazy("ember"),
     priority = 1000,
   },
 
   {
     "tiagovla/tokyodark.nvim",
     name = "tokyodark",
-    lazy = false,
+    lazy = is_lazy("tokyodark"),
     priority = 1000,
   },
 
   {
     "rose-pine/neovim",
     name = "rose-pine",
-    lazy = false,
+    lazy = is_lazy("rose-pine"),
     priority = 1000,
   },
 
   {
     "Mofiqul/dracula.nvim",
     name = "dracula",
-    lazy = false,
+    lazy = is_lazy("dracula"),
     priority = 1000,
   },
 
   {
     "shaunsingh/nord.nvim",
     name = "nord",
-    lazy = true,
+    lazy = is_lazy("nord"),
     priority = 1000,
   },
 
   {
     "sainnhe/gruvbox-material",
     name = "gruvbox-material",
-    lazy = false,
+    lazy = is_lazy("gruvbox-material"),
     priority = 1000,
     config = function()
       vim.g.gruvbox_material_enable_italic = true
@@ -56,7 +84,7 @@ return {
   {
     "sainnhe/edge",
     name = "edge",
-    lazy = false,
+    lazy = is_lazy("edge"),
     priority = 1000,
     config = function()
       vim.g.edge_enable_italic = true
@@ -68,7 +96,8 @@ return {
 
   {
     "sainnhe/everforest",
-    lazy = false,
+    name = "everforest",
+    lazy = is_lazy("everforest"),
     priority = 1000,
     config = function()
       vim.g.everforest_enable_italic = true
@@ -78,7 +107,8 @@ return {
 
   {
     "sainnhe/sonokai",
-    lazy = false,
+    name = "sonokai",
+    lazy = is_lazy("sonokai"),
     priority = 1000,
     config = function()
       vim.g.sonokai_style = "default" -- default/atlantis/andromeda/shusia/maia/espresso
@@ -90,13 +120,14 @@ return {
   {
     "shatur/neovim-ayu",
     name = "ayu",
-    lazy = false,
+    lazy = is_lazy("ayu"),
     priority = 1000,
   },
 
   {
     "EdenEast/nightfox.nvim",
-    lazy = false,
+    name = "nightfox",
+    lazy = is_lazy("nightfox"),
     priority = 1000,
     opts = {
       options = {
@@ -113,31 +144,38 @@ return {
       },
     },
   },
+
   {
     "savq/melange-nvim",
+    name = "melange",
+    lazy = is_lazy("melange"),
   },
 
   {
     "wtfox/jellybeans.nvim",
-    lazy = false,
+    name = "jellybeans",
+    lazy = is_lazy("jellybeans"),
     priority = 1000,
   },
 
   {
     "Mofiqul/vscode.nvim",
-    lazy = false,
+    name = "vscode",
+    lazy = is_lazy("vscode"),
     priority = 1000,
   },
 
   {
     "dgox16/oldworld.nvim",
-    lazy = false,
+    name = "oldworld",
+    lazy = is_lazy("oldworld"),
     priority = 1000,
   },
 
   {
     "uloco/bluloco.nvim",
-    lazy = false,
+    name = "bluloco",
+    lazy = is_lazy("bluloco"),
     priority = 1000,
     dependencies = { "rktjmp/lush.nvim" },
     opts = {
@@ -148,7 +186,8 @@ return {
 
   {
     "miikanissi/modus-themes.nvim",
-    lazy = false,
+    name = "modus-themes",
+    lazy = is_lazy("modus-themes"),
     priority = 1000,
     opts = {
       style = "modus_operandi",
@@ -159,14 +198,15 @@ return {
 
   {
     "https://gitlab.com/shmerl/neogotham",
-    lazy = false, -- to make sure it's loaded on startup
+    name = "neogotham",
+    lazy = is_lazy("neogotham"),
     priority = 1000, -- to load before other plugins
   },
 
   {
     "bluz71/vim-moonfly-colors",
     name = "moonfly",
-    lazy = false,
+    lazy = is_lazy("moonfly"),
     priority = 1000,
     config = function()
       vim.g.moonflyUnderlineMatchParen = true
@@ -175,13 +215,15 @@ return {
 
   {
     "ptdewey/darkearth-nvim",
-    lazy = false,
+    name = "darkearth",
+    lazy = is_lazy("darkearth"),
     priority = 1000,
   },
 
   {
     "scottmckendry/cyberdream.nvim",
-    lazy = false,
+    name = "cyberdream",
+    lazy = is_lazy("cyberdream"),
     priority = 1000,
     opts = {
       theme = "dark", -- auto/dark/light
@@ -191,13 +233,15 @@ return {
 
   {
     "olivercederborg/poimandres.nvim",
-    lazy = false,
+    name = "poimandres",
+    lazy = is_lazy("poimandres"),
     priority = 1000,
   },
 
   {
     "rebelot/kanagawa.nvim",
-    lazy = false,
+    name = "kanagawa",
+    lazy = is_lazy("kanagawa"),
     priority = 1000,
     opts = {
       theme = "wave", -- wave/lotus/dragon
@@ -209,55 +253,62 @@ return {
   {
     "olimorris/onedarkpro.nvim",
     name = "onedarkpro",
-    lazy = false,
+    lazy = is_lazy("onedarkpro"),
     priority = 1000, -- Ensure it loads first
   },
 
   {
     "vague-theme/vague.nvim",
     name = "vague",
-    lazy = false,
+    lazy = is_lazy("vague"),
     priority = 1000,
   },
 
   {
     "projekt0n/github-nvim-theme",
     name = "github-theme",
-    lazy = false,
+    lazy = is_lazy("github-theme"),
     priority = 1000, -- make sure to load this before all the other start plugins
   },
 
   {
     "craftzdog/solarized-osaka.nvim",
-    lazy = false,
+    name = "solarized-osaka",
+    lazy = is_lazy("solarized-osaka"),
     priority = 1000,
   },
 
   {
     "marko-cerovac/material.nvim",
-    lazy = false,
+    name = "material",
+    lazy = is_lazy("material"),
     priority = 1000,
   },
 
   {
     "AlexvZyl/nordic.nvim",
-    lazy = false,
+    name = "nordic",
+    lazy = is_lazy("nordic"),
     priority = 1000,
   },
 
   {
     "akinsho/horizon.nvim",
+    name = "horizon",
+    lazy = is_lazy("horizon"),
     version = "*",
   },
 
   {
     "NTBBloodbath/doom-one.nvim",
+    name = "doom-one",
+    lazy = is_lazy("doom-one"),
   },
 
   {
     "bluz71/vim-nightfly-colors",
     name = "nightfly",
-    lazy = false,
+    lazy = is_lazy("nightfly"),
     priority = 1000,
     config = function()
       vim.g.nightflyWinSeparator = 2
@@ -267,7 +318,8 @@ return {
 
   {
     "oxfist/night-owl.nvim",
-    lazy = false,
+    name = "night-owl",
+    lazy = is_lazy("night-owl"),
     priority = 1000,
   },
 }
