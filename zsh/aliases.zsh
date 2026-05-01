@@ -50,6 +50,8 @@ alias -g B='| bat'
 
 # SECTION: Directory hashes
 
-hash -d wd=~/workdesk
-hash -d sb=~/sandbox
+hash -d work=~/workdesk
+hash -d sand=~/sandbox
 hash -d dl=~/Downloads
+hash -d dot=~/.dotfiles
+hash -d cfg=~/.config
