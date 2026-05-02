@@ -46,6 +46,7 @@
       force: true
     ~/.config/tealdeer:
     ~/.config/tmux/tmux.conf: tmux/tmux.conf
+    ~/.config/tmux-powerline:
     ~/.config/television:
     ~/.vimrc: vim/vimrc
     ~/.vim_functions: vim/vim_functions
