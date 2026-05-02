@@ -1,12 +1,12 @@
 # SECTION: ZSH Options
 
-setopt automenu menu_complete     # autocmp fist menu match
-setopt extended_glob              # match ~ # ^
-setopt autocd                     # type a dir to cd
-setopt auto_param_slash           # when dir is complete add / instead of space
-setopt no_case_glob no_case_match # make cmp case sensitive
-setopt globdots                   # include dotfiles
-setopt interactive_comments       # allow comments in shell
+setopt automenu menu_complete # autocmp fist menu match
+setopt extended_glob          # match ~ # ^
+setopt autocd                 # type a dir to cd
+setopt auto_param_slash       # when dir is complete add / instead of space
+setopt no_case_glob           # make cmp case sensitive
+setopt globdots               # include dotfiles
+setopt interactive_comments   # allow comments in shell
 
 # Enable advanced move
 autoload zmv
@@ -23,6 +23,8 @@ typeset -g ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 typeset -x EDITOR='nvim'
 typeset -x BROWSER='open'
 typeset -x MANPAGER="sh -c 'col -bx | bat -p -l man'"
+
+typeset -x LESS="--use-color -DS17.223"
 
 # SECTION: History management
 
@@ -92,31 +94,6 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --color spinner:#21c7a8
 "
 
-# Tokyo Dark Theme
-# typeset -x FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
-#   --highlight-line \
-#   --info=inline-right \
-#   --ansi \
-#   --layout=reverse \
-#   --border=none \
-#   --color=bg+:#282934 \
-#   --color=bg:#11121d \
-#   --color=border:#27a1b9 \
-#   --color=fg:#abb2bf \
-#   --color=gutter:#16161e \
-#   --color=header:#dfae67 \
-#   --color=hl+:#7199ee \
-#   --color=hl:#7199ee \
-#   --color=info:#545c7e \
-#   --color=marker:#ee6d85 \
-#   --color=pointer:#ee6d85 \
-#   --color=prompt:#7199ee \
-#   --color=query:#abb2bf:regular \
-#   --color=scrollbar:#27a1b9 \
-#   --color=separator:#dfae67 \
-#   --color=spinner:#ee6d85 \
-# "
-
 # SECTION: Claude Code
 
 # Claude config Block
@@ -139,7 +116,7 @@ function zvm_config() {
   ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT # Starting with insert mode.
   ZVM_SYSTEM_CLIPBOARD_ENABLED=true
   ZVM_VI_HIGHLIGHT_FOREGROUND=#011627 # Hex value
-  ZVM_VI_HIGHLIGHT_BACKGROUND=#ecc48d # Hex value
+  ZVM_VI_HIGHLIGHT_BACKGROUND=#ffcb8b # Hex value
   ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold
 
   local ncur=$(zvm_cursor_style $ZVM_NORMAL_MODE_CURSOR)
@@ -147,5 +124,5 @@ function zvm_config() {
 
   # Append your custom color for your cursor
   ZVM_INSERT_MODE_CURSOR=$icur
-  ZVM_NORMAL_MODE_CURSOR=$ncur'\e\e]12;#ecc48d\a'
+  ZVM_NORMAL_MODE_CURSOR=$ncur'\e\e]12;#ffcb8b\a'
 }
