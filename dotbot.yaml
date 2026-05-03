@@ -66,7 +66,7 @@
     ~/.config/zsh-patina:
     ~/.local/bin/fzf-preview: scripts/fzf-preview
     ~/.local/bin/fzf-frecent: scripts/fzf-frecent
-    ~/.local/bin/tmux-window-picker: scripts/tmux-window-picker
+    ~/.local/bin/tmux: scripts/tmux
 
 - brewfile:
     - brew/Brewfile

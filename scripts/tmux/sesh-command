@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+TRANSITION_SCRIPT="$HOME/.local/bin/tmux/sesh-rename-transition"
+
+sesh connect "$(
+  sesh list -d --icons | fzf-tmux -p 80%,70% \
+    --no-sort --ansi --prompt '⚡ ' \
+    --border=rounded --border-label-pos=2 --border-label=' ⚡sesh ' \
+    --header 'C-a ⚡| C-t  | C-g  | C-x  | C-f  
+C-u/d:  | C-k  | C-w  | C-r 󰑕' \
+    --bind 'tab:down,btab:up' \
+    --bind 'ctrl-a:change-prompt(⚡ )+reload(sesh list --icons)' \
+    --bind 'ctrl-t:change-prompt(  )+reload(sesh list -t --icons)' \
+    --bind 'ctrl-g:change-prompt(  )+reload(sesh list -c --icons)' \
+    --bind 'ctrl-x:change-prompt(  )+reload(sesh list -z --icons)' \
+    --bind 'ctrl-f:change-prompt(  )+reload(fd -H -d 2 -t d -E .Trash . ~)' \
+    --bind 'ctrl-k:execute(tmux kill-session -t {2..})+change-prompt(⚡  )+reload(sesh list -d --icons)' \
+    --bind "ctrl-w:become(~/.local/bin/tmux/tmux-window-picker -s '{2..}')" \
+    --bind "ctrl-r:execute-silent(tmux run-shell -b \"bash '$TRANSITION_SCRIPT' '{2..}'\")" \
+    --bind 'ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up' \
+    --preview-window 'right:55%' \
+    --preview 'sesh preview {}'
+)"

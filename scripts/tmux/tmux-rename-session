@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+if ! command -v fzf >/dev/null 2>&1; then
+  tmux display-message "Error: fzf not found."
+  exit 1
+fi
+get_tmux_option() {
+  local val=$(tmux show-option -gqv "$1")
+  [ -n "$val" ] && echo "$val" || echo "$2"
+}
+accent_color=$(get_tmux_option "@tmux-simple-renamers-accent" "#cba6f7")
+secondary_color=$(get_tmux_option "@tmux-simple-renamers-secondary" "#7dc4e4")
+text_color=$(get_tmux_option "@tmux-simple-renamers-text" "#cdd6f4")
+bg_highlight=$(get_tmux_option "@tmux-simple-renamers-bg-highlight" "#313244")
+error_color=$(get_tmux_option "@tmux-simple-renamers-error" "#f38ba8")
+gray_color=$(get_tmux_option "@tmux-simple-renamers-gray" "#6c7086")
+session="$1"
+forced_width="$2"
+[ -z "$session" ] && exit 1
+if echo "$session" | grep -qE '^[^a-zA-Z0-9] '; then
+  session=$(echo "$session" | sed -E 's/^[^a-zA-Z0-9]* //')
+fi
+wins=$(tmux list-windows -t "$session" 2>/dev/null | wc -l | tr -d ' ')
+panes=$(tmux list-panes -t "$session" 2>/dev/null | wc -l | tr -d ' ')
+path=$(tmux display-message -pt "$session" '#{pane_current_path}' 2>/dev/null)
+path=$(basename "${path:-\.}")
+content="󰓩 ${wins} • 󱂬 ${panes} • 󰉋 ${path}"
+ascii_width=$(echo -n "$content" | sed 's/[^ -~]//g' | wc -c | tr -d ' ')
+visual_width=$((ascii_width + 6))
+cols=${forced_width:-$(tput cols)}
+[ -z "$cols" ] && cols=50
+usable_width=$((cols - 2))
+padding=$(((usable_width - visual_width) / 2))
+[ $padding -lt 0 ] && padding=0
+info=$(printf "%${padding}s%s" "" "$content")
+error_msg=""
+while true; do
+  current_header="$gray_color"
+  current_label="$accent_color"
+  current_border="$accent_color"
+  [ -n "$error_msg" ] && current_label="$error_color" && current_border="$error_color"
+  input_result=$(fzf </dev/null \
+    --height=100% \
+    --layout=reverse \
+    --border=rounded \
+    --border-label="${error_msg:-󰑕 RENAME SESSION}" \
+    --border-label-pos=2 \
+    --info=hidden \
+    --no-separator \
+    --no-scrollbar \
+    --padding=0 \
+    --header="$info" \
+    --color="bg:-1,bg+:$bg_highlight,fg:$text_color,fg+:$text_color,border:$current_border,label:$current_label,header:$current_header,prompt:$secondary_color,pointer:$text_color,marker:$text_color,spinner:$text_color,info:$secondary_color" \
+    --prompt="󰊠  " \
+    --query="$session" \
+    --print-query | head -n1)
+  exit_code=$?
+  if [ $exit_code -ne 0 ] || [ -z "$input_result" ]; then
+    exit 0
+  fi
+  new_name=$(echo "$input_result" | xargs)
+  if [ "$new_name" = "$session" ] || [ -z "$new_name" ]; then
+    exit 0
+  fi
+  if tmux list-sessions -F '#S' | grep -qx "$new_name" 2>/dev/null; then
+    error_msg="󰚌 ERROR: SESSION '$new_name' ALREADY EXISTS"
+    continue
+  fi
+  tmux rename-session -t "$session" "$new_name"
+  exit 0
+done

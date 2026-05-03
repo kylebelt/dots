@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+SESSION_NAME="$1"
+# CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+RENAME_SCRIPT=~/.local/bin/tmux/tmux-rename-session
+SWITCHER_SCRIPT=~/.local/bin/tmux/sesh-command
+
+tmux display-popup -C
+sleep 0.05
+tmux display-popup -E -b none -x C -y 8 -w 50 -h 4 "bash \"$RENAME_SCRIPT\" \"$SESSION_NAME\" 50; tmux run-shell -b \"bash '$SWITCHER_SCRIPT'\""
