@@ -5,9 +5,9 @@ background-blur = true
 background-blur-radius = 25
 palette-generate = true
 palette-harmonious = true
-background-image = "~/Pictures/Simon Stalenhag/by_belltowers.jpg"
+background-image = "background.jpg"
 background-image-fit = cover
-background-image-opacity = 0.06
+background-image-opacity = 0.1
 
 # UI
 title-report = true
