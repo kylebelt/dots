@@ -59,19 +59,23 @@ source ${HOMEBREW_REPOSITORY}/opt/zinit/zinit.zsh
 
 # Defaults
 typeset -x FZF_DEFAULT_COMMAND='fd --follow --hidden --strip-cwd-prefix --exclude .git --exclude node_modules --exclude .venv --exclude .env --exclude .DS_Store --exclude "*.pyc"'
-typeset -x FZF_DEFAULT_OPTS="--multi --cycle --height=40% --preview-window=right:60% \
-  --layout=reverse --info=right --prompt='❱ ' --pointer='▶' --marker='✓' --separator='┄' --padding=1 \
+typeset -x FZF_DEFAULT_OPTS="--cycle --height=40% --preview-window=right:60% --layout=reverse --info=right 
+  --prompt='❱ ' --pointer='▶' --marker='✓' --separator='┄' --padding=1"
+
+# CTRL+T
+typeset -x FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --type=file"
+typeset -x FZF_CTRL_T_OPTS="--multi --height=70% --preview-window=right:60%\
   --preview '~/.local/bin/fzf-preview {}' \
   --header '?:Preview | C-a:Select All | C-d/u:Scroll'
   --bind '?:toggle-preview,ctrl-a:select-all,ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up' \
   --bind 'tab:toggle+down,shift-tab:toggle+up'"
 
-# CTRL+T
-typeset -x FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --type=file"
-typeset -x FZF_CTRL_T_OPTS="--height=70% --preview-window=right:60%"
-
 # ALT+C
 typeset -x FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type=dir"
+typeset -x FZF_ALT_C_OPTS="-height=70% --preview-window=right:60% \
+  --preview '~/.local/bin/fzf-preview {}' \
+  --header '?:Preview | C-d/u:Scroll' \
+  --bind '?:toggle-preview,ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up'"
 
 # TMUX
 typeset -x FZF_TMUX_OPTS=" -p90%,65% "

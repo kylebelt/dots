@@ -95,10 +95,10 @@ zstyle ':fzf-tab:*' fzf-bindings \
   'ctrl-space:toggle+down'
 
 # TMUX Formatting
-if [[ -n $TMUX ]]; then
-  zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
-  zstyle ':fzf-tab:*' popup-min-size 150 40
-fi
+# if [[ -n $TMUX ]]; then
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':fzf-tab:*' popup-min-size 150 40
+# fi
 
 # Ignore internal functions
 zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'

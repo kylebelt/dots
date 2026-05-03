@@ -27,7 +27,7 @@ fd --type file \
     --prompt='❱ ' --pointer='▶' --marker='✓' \
     --separator='┄' --padding=0 \
     --preview 'fzf-preview {}' \
-    --header '?:Preview | C-a:Select All | C-d/u:Scroll' \
+    --header '?:Preview | C-d/u:Scroll' \
     --bind '?:toggle-preview,ctrl-a:select-all' \
     --bind 'ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up' \
     --bind 'tab:toggle+down,shift-tab:toggle+up' |
