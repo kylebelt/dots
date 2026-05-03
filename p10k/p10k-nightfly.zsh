@@ -32,8 +32,11 @@
   # The list of segments shown on the left. Fill it with the most important segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
-    context # user@hostname (SSH only)
-    dir     # current directory
+    context      # user@hostname (SSH only)
+    dir          # current directory
+    virtualenv   # python virtual environment
+    node_version # node.js version
+    aws          # AWS
     # =========================[ Line #2 ]=========================
     newline     # \n
     prompt_char # prompt symbol
@@ -45,15 +48,10 @@
   # last prompt line gets hidden if it would overlap with left prompt.
   typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
-    status       # exit code of the last command
-    aws          # AWS
-    virtualenv   # python virtual environment
-    node_version # node.js version
-    battery      # internal battery
+    status                 # exit code of the last command
+    command_execution_time # duration of the last command
     # =========================[ Line #2 ]=========================
     newline
-    load                   # CPU load
-    command_execution_time # duration of the last command
   )
 
   # Defines character set used by powerlevel10k. It's best to let `p10k configure` set it for you.
@@ -66,9 +64,10 @@
   # change them.
   typeset -g POWERLEVEL9K_BACKGROUND=                                   # transparent background
   typeset -g POWERLEVEL9K_{LEFT,RIGHT}_{LEFT,RIGHT}_WHITESPACE=         # no surrounding whitespace
-  typeset -g POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=' '                 # separate left segments with a space
+  typeset -g POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR='%F{#4b6479} ⋮ %f'  # separate left segments with a space
   typeset -g POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR='%F{#4b6479} ⋮ %f' # steel_blue ⋮ between right segments
   typeset -g POWERLEVEL9K_{LEFT,RIGHT}_SEGMENT_SEPARATOR=               # no end-of-line symbol
+  typeset -g POWERLEVEL9K_CONTEXT_LEFT_SUBSEGMENT_SEPARATOR=' '         # Removes separator right of context (even though it says left)
 
   # When set to true, icons appear before content on both sides of the prompt. When set
   # to false, icons go after content. If empty or not set, icons go before content in the left
