@@ -1,8 +1,13 @@
 # Theme
-config-file = themes/nightfly
-background-opacity = 0.90
+theme = nightfly
+background-opacity = 1
 background-blur = true
 background-blur-radius = 25
+palette-generate = true
+palette-harmonious = true
+background-image = "~/Pictures/Simon Stalenhag/by_belltowers.jpg"
+background-image-fit = cover
+background-image-opacity = 0.06
 
 # UI
 title-report = true
