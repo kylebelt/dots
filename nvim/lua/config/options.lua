@@ -10,8 +10,8 @@ vim.opt.spelllang = { "en", "pt_br" }
 vim.opt.clipboard = ""
 
 -- Scrolloff config
-vim.opt.scrolloff = 8
-vim.opt.sidescrolloff = 8
+vim.opt.scrolloff = 15
+vim.opt.sidescrolloff = 15
 
 -- Save options when restarting
 vim.opt.sessionoptions = "options"
@@ -32,7 +32,7 @@ vim.opt.splitright = true
 -- Disable horizontal mouse scroll
 vim.opt.mousescroll = "ver:3,hor:0"
 
--- Improve line separators
+-- Improve window separators
 vim.opt.fillchars = {
   horiz = "━",
   horizup = "┻",

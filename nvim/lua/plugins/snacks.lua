@@ -94,7 +94,8 @@ return {
           layout = function()
             return {
               hidden = {},
-              preset = "vscode",
+              -- preset = "vscode",
+              preset = "ivy",
             }
           end,
         },

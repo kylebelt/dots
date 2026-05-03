@@ -25,6 +25,15 @@ local function is_lazy(plugin_name)
   end
 end
 
+-- Changes colorscheme styles
+local function add_style(group, style)
+  local hl = vim.api.nvim_get_hl(0, { name = group })
+  for k, v in pairs(style) do
+    hl[k] = v
+  end
+  vim.api.nvim_set_hl(0, group, hl)
+end
+
 return {
   {
     "xiyaowong/transparent.nvim",
@@ -313,6 +322,15 @@ return {
     config = function()
       vim.g.nightflyWinSeparator = 2
       vim.g.nightflyCursorColor = true
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        pattern = "nightfly",
+        callback = function()
+          add_style("LineNr", { bg = "#01111e" })
+          add_style("SignColumn", { bg = "#01111e" })
+          add_style("FoldColumn", { bg = "#01111e" })
+          add_style("CursorLineNr", { bg = "#01111e" })
+        end,
+      })
     end,
   },
 
