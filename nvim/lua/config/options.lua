@@ -42,3 +42,8 @@ vim.opt.fillchars = {
   vertright = "┣",
   verthoriz = "╋",
 }
+
+-- Set to "basedpyright" to use basedpyright instead of pyright.
+vim.g.lazyvim_python_lsp = "ty"
+-- Set to "ruff_lsp" to use the old LSP implementation version.
+vim.g.lazyvim_python_ruff = "ruff"
