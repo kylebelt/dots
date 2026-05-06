@@ -28,7 +28,7 @@ startup_command = "yazi"
 
 [[window]]
 name = "vim"
-startup_script = "nvim -c 'Yazi cwd'"
+startup_script = "nvim ."
 
 [[window]]
 name = "yazi"
@@ -41,17 +41,17 @@ startup_script = "lazygit"
 [[window]]
 name = "harmony"
 path = "~/workdesk/alfretam/harmony"
-startup_script = "nvim -c 'lua Snacks.picker.smart()'"
+startup_script = "yazi"
 
 [[window]]
 name = "helpers"
 path = "~/workdesk/alfretam/helpers"
-startup_script = "nvim -c 'lua Snacks.picker.smart()'"
+startup_script = "yazi"
 
 [[window]]
 name = "source"
 path = "~/workdesk/alfretam/source/src"
-startup_script = "nvim -c 'lua Snacks.picker.smart()'"
+startup_script = "yazi"
 
 [[wildcard]]
 pattern = '~/.config/**'
