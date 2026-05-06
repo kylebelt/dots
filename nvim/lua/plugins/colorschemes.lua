@@ -39,7 +39,11 @@ return {
     "xiyaowong/transparent.nvim",
     lazy = false,
     opts = {
-      exclude_groups = { "CursorLine", "CursorLineNr" },
+      exclude_groups = {
+        "CursorLine",
+        "CursorLineNr",
+        "NormalFloat",
+      },
     },
   },
 
@@ -322,6 +326,7 @@ return {
     config = function()
       vim.g.nightflyWinSeparator = 2
       vim.g.nightflyCursorColor = true
+
       vim.api.nvim_create_autocmd("ColorScheme", {
         pattern = "nightfly",
         callback = function()

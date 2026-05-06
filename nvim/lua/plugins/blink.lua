@@ -1,7 +1,7 @@
 return {
   "saghen/blink.cmp",
   opts = {
-    keymap = { preset = "super-tab" },
+    keymap = { preset = "default" },
     sources = {
       min_keyword_length = 2,
       providers = {
@@ -18,9 +18,6 @@ return {
       },
       menu = {
         auto_show_delay_ms = 150,
-      },
-      trigger = {
-        show_in_snippet = false,
       },
     },
   },

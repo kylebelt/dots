@@ -9,7 +9,7 @@ if vim.g.neovide then
     vim.api.nvim_paste(vim.fn.getreg("+"), true, -1)
   end
 
-  vim.o.guifont = "IoskeleyMonoTerm Nerd Font:h15"
+  vim.o.guifont = "Berkeley Mono,Ioskeley Mono Term,Symbols Nerd Font Mono:h14"
   vim.g.neovide_show_border = false
   vim.g.neovide_hide_mouse_when_typing = true
   vim.g.neovide_theme = "bg_color"
