@@ -22,12 +22,12 @@ window-decoration = auto
 
 # Font
 font-size = 15
-# Condensed/SemiCondensed
-font-family = IoskeleyMonoTerm Nerd Font 
+font-family = Berkeley Mono
+font-family = Symbols Nerd Font Mono
 font-style = Regular
-font-style-bold = Bold
-font-style-italic = Italic
-font-style-bold-italic = Bold Italic
+font-style-bold = ExtraBold
+font-style-italic = SemiCondensed Oblique
+font-style-bold-italic = Bold SemiCondensed Oblique
 
 # Shell
 shell-integration = zsh
