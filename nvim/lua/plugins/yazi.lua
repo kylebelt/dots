@@ -6,11 +6,11 @@ return {
     { "<leader>e", mode = { "n" }, "<cmd>Yazi cwd<cr>", desc = "File Explorer (yazi)" },
     { "<leader>E", mode = { "n" }, "<cmd>Yazi<cr>", desc = "Yazi at file" },
   },
-  init = function()
-    vim.g.loaded_netrwPlugin = 1
-  end,
+  -- init = function()
+  --   vim.g.loaded_netrwPlugin = 1
+  -- end,
   opts = {
-    open_for_directories = true,
+    -- open_for_directories = true,
     keymaps = {
       show_help = "<C-?>",
     },

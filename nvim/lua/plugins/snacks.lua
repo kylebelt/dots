@@ -59,7 +59,7 @@ return {
   opts = {
     -- Disable explorer in favor of yazi
     explorer = {
-      enabled = false,
+      enabled = true,
     },
     dashboard = {
       preset = {

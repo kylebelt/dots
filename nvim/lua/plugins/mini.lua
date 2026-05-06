@@ -2,6 +2,10 @@ return {
   {
     "nvim-mini/mini.files",
     opts = {
+      mappings = {
+        go_in = "<CR>",
+        go_out = "-",
+      },
       windows = {
         preview = true,
         width_preview = 88,
@@ -9,6 +13,10 @@ return {
         width_nofocus = 15,
       },
     },
+  },
+  {
+    "nvim-mini/mini.splitjoin",
+    opts = {},
   },
   {
     "nvim-mini/mini.operators",
