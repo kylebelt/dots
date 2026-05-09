@@ -152,10 +152,18 @@ zvm_bindkey vicmd 'k' history-search-backward
 zvm_bindkey vicmd 'j' history-search-forward
 zvm_bindkey vicmd '^p' history-search-backward
 zvm_bindkey vicmd '^n' history-search-forward
+zvm_bindkey vicmd '^[[A' history-search-backward
+zvm_bindkey vicmd '^[[B' history-search-forward
+zvm_bindkey viins '^[[A' history-search-backward
+zvm_bindkey viins '^[[B' history-search-forward
 
 # Sesh binds
 zvm_bindkey vicmd '^[s' sesh-sessions
 zvm_bindkey viins '^[s' sesh-sessions
+
+# Completion bind to match blink.cmp
+zvm_bindkey viins '^Y' autosuggest-accept
+zvm_bindkey vicmd '^Y' autosuggest-accept
 
 # Fix Shift+Space with extended-keys/CSI-u (sends \e[32;2u instead of space)
 zvm_bindkey viins '\e[32;2u' self-insert
