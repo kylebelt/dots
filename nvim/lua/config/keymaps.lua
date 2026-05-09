@@ -40,3 +40,16 @@ end, { noremap = true, expr = true })
 vim.keymap.set({ "n", "x" }, "k", function()
   return vim.v.count > 1 and "m'" .. vim.v.count .. "k" or "k"
 end, { noremap = true, expr = true })
+
+-- Zoxide picker that opens a picker in a dir
+vim.keymap.set("n", "<leader>fz", function()
+  Snacks.picker.zoxide({
+    transform = "unique_file",
+    confirm = function(picker, item)
+      picker:close()
+      if item then
+        Snacks.picker.files({ cwd = item.file })
+      end
+    end,
+  })
+end, { desc = "Zoxide -> File Picker" })

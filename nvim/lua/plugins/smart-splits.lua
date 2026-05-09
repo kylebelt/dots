@@ -68,12 +68,3 @@ return {
     },
   },
 }
-
--- vim.keymap.set("n", "<C-left>", require("smart-splits").resize_left)
--- vim.keymap.set("n", "<C-down>", require("smart-splits").resize_down)
--- vim.keymap.set("n", "<C-up>", require("smart-splits").resize_up)
--- vim.keymap.set("n", "<C-right>", require("smart-splits").resize_right)
--- vim.keymap.set("n", "<C-S-left>", require("smart-splits").swap_buf_left)
--- vim.keymap.set("n", "<C-S-down>", require("smart-splits").swap_buf_down)
--- vim.keymap.set("n", "<C-S-right>", require("smart-splits").swap_buf_right)
--- vim.keymap.set("n", "<C-S-up>", require("smart-splits").swap_buf_up)

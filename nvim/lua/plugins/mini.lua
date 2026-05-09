@@ -22,6 +22,8 @@ return {
     "nvim-mini/mini.operators",
     opts = {
       sort = { prefix = "gz" },
+      replace = { prefix = "gR" },
+      exchange = { prefix = "gX" },
     },
   },
   {

@@ -47,3 +47,15 @@ vim.opt.fillchars = {
 vim.g.lazyvim_python_lsp = "ty"
 -- Set to "ruff_lsp" to use the old LSP implementation version.
 vim.g.lazyvim_python_ruff = "ruff"
+
+-- Whitespace rendering
+vim.opt.list = true
+vim.opt.listchars = {
+  tab = " ",
+  leadtab = " ",
+  nbsp = "␣",
+  trail = "◦",
+  lead = "∙",
+  extends = "…",
+  precedes = "…",
+}
