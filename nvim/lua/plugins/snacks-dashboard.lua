@@ -26,6 +26,13 @@ local header = [[
 
 return {
   "folke/snacks.nvim",
+  init = function()
+    vim.api.nvim_create_autocmd("ColorScheme", {
+      callback = function()
+        vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { fg = "#924bff" })
+      end,
+    })
+  end,
   ---@type snacks.Config
   opts = {
     dashboard = {
@@ -33,7 +40,11 @@ return {
         header = header,
       },
       sections = {
-        { section = "header", indent = 60 },
+        {
+          section = "header",
+          indent = 60,
+          hl = "SnacksDashboardHeader",
+        },
         {
           icon = "",
           title = "Shortcuts",
@@ -44,6 +55,10 @@ return {
           indent = 0,
           gap = 1,
           padding = { 2, 0 },
+        },
+        {
+          section = "startup",
+          indent = 60,
         },
         {
           pane = 2,
@@ -73,10 +88,6 @@ return {
           section = "projects",
           indent = 0,
           padding = 1,
-        },
-        {
-          section = "startup",
-          indent = 60,
         },
       },
     },
