@@ -22,6 +22,7 @@
     - dotbot-plugins/dotbot-brew/
 
 - link:
+    ~/.config/aerospace:
     ~/.config/atuin:
     ~/.config/aws:
     ~/.config/bat:
@@ -34,8 +35,6 @@
     ~/.config/fastfetch:
     ~/.config/ghostty:
     ~/.config/karabiner:
-      glob: true
-      path: karabiner/*
     ~/.config/lazygit:
     ~/.config/nvim:
     ~/.config/omp:
