@@ -40,7 +40,7 @@ export TMUX_POWERLINE_STATUS_INTERVAL="1"
 export TMUX_POWERLINE_STATUS_JUSTIFICATION="absolute-centre"
 
 # The maximum length of the left status bar.
-export TMUX_POWERLINE_STATUS_LEFT_LENGTH="100"
+export TMUX_POWERLINE_STATUS_LEFT_LENGTH="200"
 # The maximum length of the right status bar.
 export TMUX_POWERLINE_STATUS_RIGHT_LENGTH="100"
 

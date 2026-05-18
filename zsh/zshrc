@@ -148,8 +148,8 @@ zvm_bindkey vicmd '^[^H' backward-kill-word
 # Bind ctrl+p/n and j/k (cmd) for history search in both modes
 zvm_bindkey viins '^p' history-search-backward
 zvm_bindkey viins '^n' history-search-forward
-zvm_bindkey vicmd 'k' history-search-backward
-zvm_bindkey vicmd 'j' history-search-forward
+# zvm_bindkey vicmd 'k' history-search-backward
+# zvm_bindkey vicmd 'j' history-search-forward
 zvm_bindkey vicmd '^p' history-search-backward
 zvm_bindkey vicmd '^n' history-search-forward
 zvm_bindkey vicmd '^[[A' history-search-backward

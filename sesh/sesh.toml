@@ -5,7 +5,6 @@ blacklist = ["scratch"]
 import = ["${XDG_CONFIG_HOME}/aws/sesh.toml"]
 
 [default_session]
-startup_command = "ll"
 preview_command = "eza --all --icons=always --color=always --tree --level 2 -I '.DS_Store|.env|.venv|env|venv|node_modules' --git-ignore {}"
 
 [[session]]

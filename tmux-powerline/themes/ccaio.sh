@@ -114,11 +114,11 @@ fi
 if [ -z "$TMUX_POWERLINE_LEFT_STATUS_SEGMENTS" ]; then
   TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
     "mode_indicator #{?client_prefix,$orange,$green} $base default_separator no_sep_bg_color no_sep_fg_color left_disable"
+    # "hostname $watermelon $thm_bg"
     "pwd $blue $base default_separator no_sep_bg_color no_sep_fg_color"
     "vcs_branch $thm_gray"
     "pane_state $thm_bg $watermelon default_separator no_sep_bg_color no_sep_fg_color right_disable separator_disable"
     # "tmux_session_info $blue $thm_bg"
-    # "hostname $eggplant $thm_bg"
   )
 fi
 

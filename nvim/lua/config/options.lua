@@ -55,7 +55,7 @@ vim.opt.listchars = {
   leadtab = " ",
   nbsp = "␣",
   trail = "◦",
-  lead = "∙",
+  lead = "•",
   extends = "…",
   precedes = "…",
 }
