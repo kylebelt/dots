@@ -43,6 +43,7 @@
     ~/.config/starship.toml:
       path: starship/starship.toml
       force: true
+    ~/.config/task:
     ~/.config/tealdeer:
     ~/.config/tmux/tmux.conf: tmux/tmux.conf
     ~/.config/tmux-powerline:
@@ -66,6 +67,9 @@
     ~/.local/bin/fzf-preview: scripts/fzf-preview
     ~/.local/bin/fzf-frecent: scripts/fzf-frecent
     ~/.local/bin/tmux: scripts/tmux
+    ~/.local/share/pandoc/defaults/:
+      glob: true
+      path: pandoc/*
 
 - brewfile:
     - brew/Brewfile

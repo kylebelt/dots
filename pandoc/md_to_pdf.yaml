@@ -1,0 +1,6 @@
+pdf-engine: tectonic
+variables:
+  geometry: "margin=1.5cm"
+  colorlinks: true
+  mainfont: "Helvetica"
+  monofont: "Berkeley Mono"
