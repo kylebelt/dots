@@ -1,12 +1,13 @@
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
-"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
+#:schema https://yazi-rs.github.io/schemas/yazi.json
 
 [mgr]
 ratio = [1, 2, 4]
 sort_by = "mtime"
 sort_sensitive = false
 sort_reverse = true
+sort_fallback = "alphabetical"
 sort_dir_first = true
 sort_translit = false
 linemode = "size"
@@ -14,7 +15,6 @@ show_hidden = true
 show_symlink = true
 scrolloff = 5
 mouse_events = ["click", "scroll"]
-title_format = "Yazi: {cwd}"
 
 [preview]
 wrap = "no"
@@ -119,8 +119,11 @@ rules = [
 ]
 
 [tasks]
-micro_workers = 10
-macro_workers = 10
+file_workers = 10
+plugin_workers = 10
+fetch_workers = 5
+preload_workers = 2
+process_workers = 5
 bizarre_retry = 3
 image_alloc = 536870912      # 512MB
 image_bound = [10000, 10000]
@@ -128,8 +131,8 @@ suppress_preload = false
 
 [plugin]
 prepend_fetchers = [
-  { id = "git", url = "*", run = "git", group = "git" },
-  { id = "git", url = "*/", run = "git", group = "git" },
+  { url = "*", run = "git", group = "git" },
+  { url = "*/", run = "git", group = "git" },
 ]
 
 prepend_previewers = [
@@ -140,11 +143,12 @@ prepend_previewers = [
 
 fetchers = [
   # Mimetype
-  { id = "mime", url = "*/", run = "mime.dir", prio = "high" },
-  { id = "mime", url = "local://*", run = "mime.local", prio = "high" },
-  { id = "mime", url = "remote://*", run = "mime.remote", prio = "high" },
+  { group = "mime", url = "*/", run = "mime.dir", prio = "high" },
+  { group = "mime", url = "local://*", run = "mime.local", prio = "high" },
+  { group = "mime", url = "remote://*", run = "mime.remote", prio = "high" },
 ]
 spotters = [
+  { mime = "multi/*", run = "multi" },
   { url = "*/", run = "folder" },
   # Code
   { mime = "text/*", run = "code" },

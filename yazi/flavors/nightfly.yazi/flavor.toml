@@ -7,7 +7,7 @@
 #   green=#a1cd5e, emerald=#21c7a8, turquoise=#7fdbca, lime=#85dc85
 #   blue=#82aaff, malibu=#87bcff, violet=#c792ea, purple=#ae81ff, lavender=#b0b2f4
 
-"$schema" = "https://yazi-rs.github.io/schemas/theme.json"
+#:schema = "https://yazi-rs.github.io/schemas/theme.json"
 
 # vim:fileencoding=utf-8:foldmethod=marker
 
