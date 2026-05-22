@@ -72,7 +72,7 @@ typeset -x FZF_CTRL_T_OPTS="--multi --height=70% --preview-window=right:60%\
 
 # ALT+C
 typeset -x FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type=dir"
-typeset -x FZF_ALT_C_OPTS="-height=70% --preview-window=right:60% \
+typeset -x FZF_ALT_C_OPTS="--height=70% --preview-window=right:60% \
   --preview '~/.local/bin/fzf-preview {}' \
   --header '?:Preview | C-d/u:Scroll' \
   --bind '?:toggle-preview,ctrl-d:preview-half-page-down,ctrl-u:preview-half-page-up'"
