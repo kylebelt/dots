@@ -24,7 +24,7 @@ typeset -x EDITOR='nvim'
 typeset -x BROWSER='open'
 typeset -x MANPAGER="sh -c 'col -bx | bat -p -l man'"
 
-typeset -x LESS="--use-color -DS17.223"
+typeset -x LESS="-iMFXRj4a#1 --use-color -DS17.223"
 
 # SECTION: History management
 

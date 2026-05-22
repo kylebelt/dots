@@ -38,8 +38,8 @@ typeset -x -UT INFOPATH infopath
 # EZA config
 typeset -x EZA_CONFIG_DIR="$XDG_CONFIG_HOME/eza"
 
-# AWS
-typeset -x AWS_CONFIG_DIR="${XDG_CONFIG_HOME}/aws"
+# WORK
+typeset -x WORK_CONFIG_DIR="${XDG_CONFIG_HOME}/work"
 
 # Tealdeer config path
 typeset -x TEALDEER_CONFIG_DIR="${XDG_CONFIG_HOME}/tealdeer"

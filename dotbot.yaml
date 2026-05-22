@@ -6,14 +6,16 @@
     shell:
       quiet: true
 
-- clean: ['~', '~/.config']
+- clean:
+    - '~'
+    - ~/.config
+    - ~/.local/bin
 
 - create:
     - ~/.config
     - ~/.cache
     - ~/.local/share
     - ~/.local/state
-    - ~/.config/aws
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
@@ -34,6 +36,7 @@
     ~/.config/eza:
     ~/.config/fastfetch:
     ~/.config/ghostty:
+    ~/.config/homebrew:
     ~/.config/karabiner:
     ~/.config/lazygit:
     ~/.config/nvim:
@@ -72,4 +75,4 @@
       path: pandoc/*
 
 - brewfile:
-    - brew/Brewfile
+    - homebrew/Brewfile

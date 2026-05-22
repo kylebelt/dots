@@ -1,3 +1,12 @@
 [submodule "dotbot-plugins/dotbot-brew"]
 	path = dotbot-plugins/dotbot-brew
 	url = https://github.com/d12frosted/dotbot-brew.git
+[submodule "dotbot"]
+	path = dotbot
+	url = https://github.com/anishathalye/dotbot
+	ignore = dirty
+[submodule "dots-private"]
+	path = private
+	url = https://github.com/kylebelt/dots-private.git
+	branch = main
+	update = merge
