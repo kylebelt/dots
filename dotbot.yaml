@@ -5,14 +5,16 @@
     shell:
       quiet: true
 
-- clean: ['~', '~/.config']
+- clean:
+    - '~'
+    - ~/.config
+    - ~/.local/bin
 
 - create:
     - ~/.config
     - ~/.cache
     - ~/.local/share
     - ~/.local/state
-    - ~/.config/aws
 
 - plugins:
     - dotbot-plugins/dotbot-brew/
@@ -24,6 +26,7 @@
     ~/.config/eza:
     ~/.config/fastfetch:
     ~/.config/ghostty:
+    ~/.config/homebrew:
     ~/.config/karabiner:
     ~/.config/lazygit:
     ~/.config/nvim:
@@ -44,4 +47,4 @@
     ~/.config/zsh-patina:
 
 - brewfile:
-    - brew/Brewfile
+    - homebrew/Brewfile

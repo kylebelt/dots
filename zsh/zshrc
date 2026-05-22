@@ -6,33 +6,8 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
-# Env Vars
-# Set default XDG config
-export EDITOR='nvim'
-export HOMEBREW_NO_ENV_HINTS=1
-export FZF_CTRL_R_OPTS="--layout=reverse --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
-  --color header:italic
-  --header 'Press CTRL-Y to copy command into clipboard'
-  --preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
-
-# EZA Default config dir
-export EZA_CONFIG_DIR="$XDG_CONFIG_HOME/eza"
-
-# AWS
-export SHOW_AWS_PROMPT=false # Fix AWS extension trash prompt
-export AWS_PROFILE='default'
-export AWS_CONFIG_DIR="${XDG_CONFIG_HOME}/aws"
-
-# Python plugin auto venv activate/deactivate vars
-export PYTHON_VENV_NAME=".venv"
-export PYTHON_VENV_NAMES=($PYTHON_VENV_NAME .env venv env)
-export PYTHON_AUTO_VRUN=true
-
-# Set the zinit and plugins directory
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-
-# Set brew paths
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Work specific settings
+[[ -f ${WORK_CONFIG_DIR}/zsh_work.zsh ]] && source ${WORK_CONFIG_DIR}/zsh_work.zsh
 
 # SECTION: Stuff that need to be loaded early
 
@@ -61,21 +36,11 @@ zinit ice depth=1; zinit light romkatv/powerlevel10k
 source $ZDOTDIR/zvm_config.zsh
 zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
 
-# Add in zsh plugins
-zinit ice wait lucid; zinit light Aloxaf/fzf-tab
-#zinit ice wait lucid; zinit light Freed-Wu/fzf-tab-source
-zinit ice wait lucid; zinit light zsh-users/zsh-completions
-zinit ice wait lucid; zinit light zsh-users/zsh-autosuggestions
-#zinit ice wait lucid; zinit light zsh-users/zsh-syntax-highlighting
-zinit ice wait lucid as"program" from"gh-r" pick"zsh-patina-*/zsh-patina" atload'eval "$(zsh-patina activate)"'
-zinit light michel-kraemer/zsh-patina
-
-# EZA Styling (must be before OMZP::eza loads)
-zstyle ':omz:plugins:eza' 'git-status' yes
-zstyle ':omz:plugins:eza' 'icons' yes
-zstyle ':omz:plugins:eza' 'dirs-first' yes
-zstyle ':omz:plugins:eza' 'hyperlink' yes
-zstyle ':omz:plugins:eza' 'header' yes
+# Other plugins
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+zinit ice atinit'AUTOCD=1'
+zinit light z-shell/zsh-eza
 
 # Add in snippets
 zinit ice wait lucid; zinit snippet OMZL::functions.zsh
@@ -234,7 +199,12 @@ fi
 
 # SECTION: End of file evals
 
-eval "$(zoxide init --cmd cd zsh)"
+# Use cached function instead of plain eval to save startup time
+_cache_eval fzf --zsh
+_cache_eval zoxide init --cmd cd zsh
+_cache_eval atuin init zsh --disable-up-arrow
+_cache_eval zsh-patina activate
+unfunction _cache_eval
 
 
 if [[ ! -f $XDG_CONFIG_HOME/p10k/tokyo-evenings.zsh ]]; then 
