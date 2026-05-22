@@ -1,7 +1,9 @@
 return {
   "saghen/blink.cmp",
   opts = {
-    keymap = { preset = "default" },
+    keymap = {
+      preset = "default",
+    },
     sources = {
       min_keyword_length = 2,
       providers = {

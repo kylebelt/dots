@@ -19,9 +19,6 @@ vim.opt.sessionoptions = "options"
 -- Shared opacity value for neovide transparency toggle
 vim.g.neovide_transparent_opacity = 0.7
 
--- Auto change cwd to file path
-vim.opt.autochdir = true
-
 -- Fix esc sending alt by mistake
 vim.opt.ttimeoutlen = 0
 
