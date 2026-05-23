@@ -37,7 +37,7 @@ alias -s json="jless"
 # SECTION: Global aliases
 
 # Colorize help commands with bat
-alias -g -- -h='-h | bat --language=help --style=plain'
+# alias -g -- -h='-h | bat --language=help --style=plain'
 alias -g -- --help='--help | bat --language=help --style=plain'
 
 # Pipe aliases
