@@ -36,6 +36,7 @@ All commands should be run from `~/.dotfiles/`.
 | `make clean` | Remove dead symlinks |
 | `make brew_install` | Install packages from Brewfile |
 | `make backup` | Backup everything (brew dump + mackup) |
+| `make mackup` | Sync mackup ignore list and run backup |
 | `make brew_dump` | Update Brewfile with currently installed packages |
 | `make help` | Show available targets |
 
