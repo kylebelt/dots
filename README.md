@@ -5,12 +5,12 @@ Personal dotfiles managed with [Dotbot](https://github.com/anishathalye/dotbot) 
 ## Prerequisites
 
 - [Homebrew](https://brew.sh)
-- Git
+- Git (`brew install gh` for quick login)
 
 ## Installation
 
 ```bash
-git clone --recursive https://github.com/kylebelt/dotfiles.git ~/.dotfiles
+git clone --recursive https://github.com/kylebelt/dots.git ~/.dotfiles
 cd ~/.dotfiles
 make install
 ```
