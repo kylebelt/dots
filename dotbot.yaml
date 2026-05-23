@@ -17,21 +17,16 @@
     - ~/.local/share
     - ~/.local/state
 
-- shell:
-    - [git submodule update --init --recursive, Installing submodules]
-
 - plugins:
     - dotbot-plugins/dotbot-brew/
 
 - link:
     ~/.config/aerospace:
     ~/.config/atuin:
-    ~/.config/aws:
     ~/.config/bat:
     ~/.bash_profile: bash/bash_profile
     ~/.bash_functions: bash/bash_functions
     ~/.config/bottom:
-    ~/.config/cmux:
     ~/.duckdbrc: duckdb/duckdbrc
     ~/.config/eza:
     ~/.config/fastfetch:
@@ -46,11 +41,9 @@
     ~/.config/starship.toml:
       path: starship/starship.toml
       force: true
-    ~/.config/task:
     ~/.config/tealdeer:
     ~/.config/tmux/tmux.conf: tmux/tmux.conf
     ~/.config/tmux-powerline:
-    ~/.config/television:
     ~/.vimrc: vim/vimrc
     ~/.vim_functions: vim/vim_functions
     ~/.vundle: vim/vundle

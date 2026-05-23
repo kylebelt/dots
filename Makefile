@@ -44,7 +44,7 @@ brew_dump:
 mackup:
 	@./scripts/make/sync-mackup.sh
 	@./scripts/make/mackup-run.sh backup $(MACKUP_FLAGS)
-	@./scripts/make/mackup-run.sh backup $(MACKUP_FLAGS) private/mackup/mackup-work.cfg
+	@./scripts/make/mackup-run.sh backup $(MACKUP_FLAGS) ~/.config/mackup/mackup-work.cfg
 
 install_public:
 	@$(DOTBOT_BIN) $(DOTBOT_FLAGS) -v -c $(CONFIG)
@@ -56,7 +56,7 @@ install_private:
 install_work:
 	@if ./scripts/make/check-hostname.sh private/work_hostnames; then \
 		$(DOTBOT_BIN) $(DOTBOT_FLAGS) -v -d private -c private/dotbot-work.yaml; \
-		./scripts/make/mackup-run.sh restore $(MACKUP_FLAGS) private/mackup/mackup-work.cfg; \
+		./scripts/make/mackup-run.sh restore $(MACKUP_FLAGS) ~/.config/mackup/mackup-work.cfg; \
 	else \
 		echo "⚠ Skipping work install (not a work machine)"; \
 	fi
