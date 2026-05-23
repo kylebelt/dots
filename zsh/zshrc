@@ -176,11 +176,8 @@ _cache_eval atuin init zsh --disable-up-arrow
 _cache_eval zsh-patina activate
 unfunction _cache_eval
 
-if [[ ! -f $XDG_CONFIG_HOME/p10k/tokyo-evenings.zsh ]]; then
-  source $XDG_CONFIG_HOME/p10k/p10k.zsh
-else
+if [[ -f $XDG_CONFIG_HOME/p10k/tokyo-evenings.zsh ]]; then
   source $XDG_CONFIG_HOME/p10k/p10k-nightfly.zsh
+else
+  source $XDG_CONFIG_HOME/p10k/p10k.zsh
 fi
-
-#eval ""
-#eval "$(starship init zsh)"
