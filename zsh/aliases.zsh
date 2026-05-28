@@ -17,7 +17,7 @@ alias ps="procs --sortd cpu"
 alias ping="gping"
 
 # Shorthand and mispelling
-alias kc="kiro-cli"
+alias kc="kiro-cli chat"
 alias gg="lazygit"
 alias tmus="tmux"
 alias sclaude="cd ~/sandbox/ && claude"
