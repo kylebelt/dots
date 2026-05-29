@@ -51,7 +51,7 @@ typeset -x AWS_PROFILE='default'
 ZCOMPDUMP_FILE="${XDG_CACHE_HOME}/zsh/zcompdump"
 
 # EZA Settings
-eza_params=('--git' '--icons' '--group-directories-first' '--time-style=long-iso' '--color-scale-mode=fixed' '--no-quotes' '--hyperlink' '--ignore-glob' '.DS_Store')
+eza_user_params=('--git' '--icons' '--group' '--group-directories-first' '--time-style=long-iso' '--color-scale-mode=fixed' '--no-quotes' '--hyperlink' '--ignore-glob' '.DS_Store')
 
 # ZINIT Initialization
 source ${HOMEBREW_REPOSITORY}/opt/zinit/zinit.zsh
