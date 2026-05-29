@@ -2,10 +2,10 @@
 # Based on bluz71/vim-nightfly-colors
 
 "comment" = "#7c8f8f"
-"string" = "#ecc48d"
+"string" = "#a1cd5e"
 "keyword.operator.regexp" = "#a1cd5e"
 "constant.character.escape" = "#e3d18a"
-"constant.numeric.integer.decimal.file-descriptor" = "#f78c6c"
+"constant.numeric.integer.decimal.file-descriptor" = "#e3d18a"
 "variable.parameter" = "#c792ea"
 "variable.other" = "#e3d18a"
 "punctuation.definition.variable" = "#e3d18a"
@@ -14,7 +14,7 @@
 "keyword" = "#c792ea"
 "storage" = "#c792ea"
 "support" = "#7fdbca"
-"entity.name.function" = "#ecc48d"
+"entity.name.function" = "#82aaff"
 "punctuation.section" = "#ecc48d"
 
 # history expansions

@@ -44,7 +44,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("BufEnter", {
   group = vim.api.nvim_create_augroup("LazyVimRoot", { clear = true }),
   callback = function()
-    if vim.bo.buftype ~= "" then return end
+    if vim.bo.buftype ~= "" then
+      return
+    end
     local root = LazyVim.root()
     if root and root ~= vim.uv.cwd() then
       vim.fn.chdir(root)

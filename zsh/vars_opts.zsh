@@ -98,21 +98,21 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
   --color spinner:#21c7a8
 "
 
-# SECTION: Claude Code
-
-# Claude config Block
-# Enable Bedrock integration
-typeset -x CLAUDE_CODE_USE_BEDROCK=1
-typeset -x AWS_REGION="us-east-1"
-
-# Optional: Override the region for the small/fast model (Haiku)
-typeset -x ANTHROPIC_SMALL_FAST_MODEL_AWS_REGION="us-east-2"
-
-# Pin Models
-typeset -x ANTHROPIC_DEFAULT_OPUS_MODEL='us.anthropic.claude-opus-4-6-v1'
-typeset -x ANTHROPIC_DEFAULT_SONNET_MODEL='us.anthropic.claude-sonnet-4-6'
-typeset -x ANTHROPIC_DEFAULT_HAIKU_MODEL='us.anthropic.claude-haiku-4-5-20251001-v1:0'
-
+# # SECTION: Claude Code
+#
+# # Claude config Block
+# # Enable Bedrock integration
+# typeset -x CLAUDE_CODE_USE_BEDROCK=1
+# typeset -x AWS_REGION="us-east-1"
+#
+# # Optional: Override the region for the small/fast model (Haiku)
+# typeset -x ANTHROPIC_SMALL_FAST_MODEL_AWS_REGION="us-east-2"
+#
+# # Pin Models
+# typeset -x ANTHROPIC_DEFAULT_OPUS_MODEL='us.anthropic.claude-opus-4-6-v1'
+# typeset -x ANTHROPIC_DEFAULT_SONNET_MODEL='us.anthropic.claude-sonnet-4-6'
+# typeset -x ANTHROPIC_DEFAULT_HAIKU_MODEL='us.anthropic.claude-haiku-4-5-20251001-v1:0'
+#
 # SECTION: ZVM Config function
 # Can't be standalone as it is read during resources
 function zvm_config() {
