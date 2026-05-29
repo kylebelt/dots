@@ -7,7 +7,7 @@
       quiet: true
 
 - clean:
-    - '~'
+    - "~"
     - ~/.config
     - ~/.local/bin
 
@@ -16,6 +16,8 @@
     - ~/.cache
     - ~/.local/share
     - ~/.local/state
+    - ~/.cache/zinit/completions
+    - ~/.cache/zsh/
 
 - plugins:
     - dotbot-plugins/dotbot-brew/
@@ -69,3 +71,6 @@
 
 - brewfile:
     - homebrew/Brewfile
+
+- shell:
+    - bat cache --build
