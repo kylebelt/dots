@@ -775,6 +775,16 @@
                         "product_id": 58513,
                         "vendor_id": 13357
                     }
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 12292,
+                        "vendor_id": 14000
+                    },
+                    "ignore": false,
+                    "treat_as_built_in_keyboard": true
                 }
             ],
             "name": "Default profile",
@@ -785,12 +795,12 @@
                     "to": [{ "key_code": "left_command" }]
                 },
                 {
-                    "from": { "key_code": "right_gui" },
-                    "to": [{ "key_code": "right_command" }]
-                },
-                {
                     "from": { "key_code": "right_control" },
                     "to": [{ "apple_vendor_top_case_key_code": "keyboard_fn" }]
+                },
+                {
+                    "from": { "key_code": "right_gui" },
+                    "to": [{ "key_code": "right_command" }]
                 }
             ],
             "virtual_hid_keyboard": { "keyboard_type_v2": "ansi" }
