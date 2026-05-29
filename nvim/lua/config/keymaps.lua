@@ -53,3 +53,6 @@ vim.keymap.set("n", "<leader>fz", function()
     end,
   })
 end, { desc = "Zoxide -> File Picker" })
+
+-- Yank entire buffer to clipboard
+vim.keymap.set("n", "<leader>Y", ":<C-u>%y+<CR>", { desc = "Copy entire buffer to clipboard" })
