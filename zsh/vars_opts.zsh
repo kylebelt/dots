@@ -27,6 +27,9 @@ typeset -x MANPAGER="sh -c 'col -bx | bat -p -l man'"
 typeset -x LESS="-iMFXRj4a#1 --use-color -DS17.223"
 typeset -x LESSKEYIN="${XDG_CONFIG_HOME}/less/lesskey"
 
+typeset -x GOPATH="$HOME/.local/share/go"
+typeset -x GOBIN="$HOME/.local/bin"
+
 # SECTION: History management
 
 HISTSIZE=50000
