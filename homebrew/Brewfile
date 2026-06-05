@@ -136,7 +136,6 @@ mas "Barbee", id: 1548711022
 mas "Color Picker", id: 1545870783
 mas "DaisyDisk", id: 411643860
 mas "NepTunes", id: 1006739057
-mas "Pixelmator", id: 407963104
 mas "Telegram", id: 747648890
 mas "The Unarchiver", id: 425424353
 mas "Velja", id: 1607635845
@@ -144,7 +143,6 @@ go "github.com/junegunn/fzf"
 uv "ipython"
 uv "ruff"
 uv "smassh"
-uv "sqlit"
 uv "sqlit-tui", with: ["pyathena"]
 uv "ty"
 npm "osgrep"

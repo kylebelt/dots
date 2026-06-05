@@ -72,7 +72,7 @@ install_work:
 
 install_personal:
 	@if ! ./scripts/make/check-hostname.sh private/work_hostnames; then \
-		$(DOTBOT_BIN) $(DOTBOT_FLAGS) -v -d private -c private/dotbot-personal.yaml; \
+		$(DOTBOT_BIN) $(DOTBOT_FLAGS) -v -c dotbot-personal.yaml; \
 	else \
 		echo "$(YELLOW) Skipping personal install (work machine)$(RESET)"; \
 	fi
