@@ -18,7 +18,7 @@ endif
 # Default target
 all: install
 
-install: update install_public install_private install_work
+install: update install_public install_private install_personal install_work
 
 backup: brew_dump mackup
 
@@ -61,19 +61,27 @@ install_work:
 		echo "⚠ Skipping work install (not a work machine)"; \
 	fi
 
+install_personal:
+	@if ! ./scripts/make/check-hostname.sh private/work_hostnames; then \
+		$(DOTBOT_BIN) $(DOTBOT_FLAGS) -v -d private -c private/dotbot-personal.yaml; \
+	else \
+		echo "⚠ Skipping personal install (work machine)"; \
+	fi
+
 help:
 	@echo "Usage: make [target]"
 	@echo ""
 	@echo "Targets:"
-	@echo "  install         Install all dotfiles (public + private + work)"
-	@echo "  install_public  Install only public dotfiles"
-	@echo "  install_private Install private dotfiles + mackup restore"
-	@echo "  install_work    Install work dotfiles + mackup restore"
-	@echo "  update          Update repositories from git"
-	@echo "  link            Run public dotfiles link only"
-	@echo "  clean           Remove dead symlinks"
-	@echo "  brew_install    Install Brewfile packages"
-	@echo "  backup          Backup files/apps with Brew and Mackup"
-	@echo "  mackup          Sync mackup ignore list and run backup"
-	@echo "  brew_dump       Dump current brew packages to Brewfile"
-	@echo "  help            Show this help"
+	@echo "  install            Install all dotfiles (public + private + work)"
+	@echo "  install_public     Install only public dotfiles"
+	@echo "  install_private    Install private dotfiles + mackup restore"
+	@echo "  install_personal   Install personal configs only"
+	@echo "  install_work       Install work dotfiles + mackup restore"
+	@echo "  update             Update repositories from git"
+	@echo "  link               Run public dotfiles link only"
+	@echo "  clean              Remove dead symlinks"
+	@echo "  brew_install       Install Brewfile packages"
+	@echo "  backup             Backup files/apps with Brew and Mackup"
+	@echo "  mackup             Sync mackup ignore list and run backup"
+	@echo "  brew_dump          Dump current brew packages to Brewfile"
+	@echo "  help               Show this help"

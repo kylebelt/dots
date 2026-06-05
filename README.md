@@ -30,6 +30,7 @@ All commands should be run from `~/.dotfiles/`.
 | `make install` | Full install (public + private + work) |
 | `make install_public` | Install only public dotfiles |
 | `make install_private` | Install private dotfiles + mackup restore |
+| `make install_personal` | Install personal configus only |
 | `make install_work` | Install work dotfiles (skipped on non-work machines) |
 | `make update` | Pull latest changes from git |
 | `make link` | Symlink public dotfiles only |

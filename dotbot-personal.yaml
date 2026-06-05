@@ -1,0 +1,29 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+      backup: true
+    shell:
+      quiet: true
+
+- clean:
+    - "~"
+    - ~/.config
+    - ~/.local/bin
+
+- create:
+    - ~/.config
+    - ~/.cache
+    - ~/.local/share
+    - ~/.local/state
+    - ~/.cache/zinit/completions
+    - ~/.cache/zsh/
+
+- plugins:
+    - dotbot-plugins/dotbot-brew/
+
+- link:
+    ~/.config/homebrew/Brewfile-personal: personal/homebrew/Brewfile-personal
+
+- brewfile:
+    - homebrew/Brewfile-personal
