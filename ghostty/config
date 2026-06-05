@@ -54,7 +54,7 @@ keybind = shift+space=text:\x20
 macos-titlebar-style = tabs
 macos-option-as-alt = true
 # macos-shortcuts = allow
-fullscreen = non-native-visible-menu
+# fullscreen = non-native-visible-menu
 macos-non-native-fullscreen = visible-menu
 macos-icon = custom-style
 macos-icon-ghost-color = #7fdbca

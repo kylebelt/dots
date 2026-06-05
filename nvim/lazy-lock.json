@@ -94,7 +94,7 @@
   "transparent.nvim": { "branch": "main", "commit": "8ac59883de84e9cd1850ea25cf087031c5ba7d54" },
   "trouble.nvim": { "branch": "main", "commit": "bd67efe408d4816e25e8491cc5ad4088e708a69a" },
   "ts-comments.nvim": { "branch": "main", "commit": "123a9fb12e7229342f807ec9e6de478b1102b041" },
-  "vague": { "branch": "main", "commit": "fd58046b9d64259d9785e4aeb6d6f494c6943cad" },
+  "vague": { "branch": "main", "commit": "ea1a853fe6ed04c785b6bc2f103f1b5372eadfb8" },
   "venv-selector.nvim": { "branch": "main", "commit": "cc4bb3975de8835291f9bb45889e96c6b2795fc4" },
   "vim-dadbod": { "branch": "master", "commit": "6d1d41da4873a445c5605f2005ad2c68c99d8770" },
   "vim-dadbod-completion": { "branch": "master", "commit": "a8dac0b3cf6132c80dc9b18bef36d4cf7a9e1fe6" },
