@@ -1,0 +1,11 @@
+{
+  "trustedformulae": [
+    "gromgit/brewtils/taproom",
+    "michel-kraemer/zsh-patina/zsh-patina",
+    "peonping/tap/peon-ping",
+    "s-sigdel/tap/vimhjkl"
+  ],
+  "trustedtaps": [
+    "nikitabobko/tap"
+  ]
+}
