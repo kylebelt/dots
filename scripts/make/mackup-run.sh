@@ -24,5 +24,5 @@ dir=$(awk -F= '/^path/{print $2}' "$cfg_path" | xargs)
 if [ -d "$dir" ]; then
   mackup --force $action $cfg_flag $flags
 else
-  echo "⚠ Skipping mackup $action ($dir not found)"
+  echo "${RED} Skipping mackup $action ($dir not found)${RESET}"
 fi

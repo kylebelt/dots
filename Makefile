@@ -3,6 +3,15 @@ DOTBOT_DIR := dotbot
 DOTBOT_BIN := $(DOTBOT_DIR)/bin/dotbot
 CONFIG := dotbot.yaml
 
+# Colors (auto-disabled if make output is piped)
+RED     := $(shell printf '\033[31m')
+GREEN   := $(shell printf '\033[32m')
+YELLOW  := $(shell printf '\033[33m')
+BLUE    := $(shell printf '\033[34m')
+MAGENTA := $(shell printf '\033[35m')
+CYAN    := $(shell printf '\033[36m')
+RESET   := $(shell printf '\033[0m')
+
 # Dry Run setting
 DRY_RUN ?=
 ifdef DRY_RUN
@@ -58,30 +67,30 @@ install_work:
 		$(DOTBOT_BIN) $(DOTBOT_FLAGS) -v -d private -c private/dotbot-work.yaml; \
 		./scripts/make/mackup-run.sh restore $(MACKUP_FLAGS) ~/.config/mackup/mackup-work.cfg; \
 	else \
-		echo "⚠ Skipping work install (not a work machine)"; \
+		echo "$(YELLOW) Skipping work install (not a work machine)$(RESET)"; \
 	fi
 
 install_personal:
 	@if ! ./scripts/make/check-hostname.sh private/work_hostnames; then \
 		$(DOTBOT_BIN) $(DOTBOT_FLAGS) -v -d private -c private/dotbot-personal.yaml; \
 	else \
-		echo "⚠ Skipping personal install (work machine)"; \
+		echo "$(YELLOW) Skipping personal install (work machine)$(RESET)"; \
 	fi
 
 help:
-	@echo "Usage: make [target]"
+	@echo "$(GREEN)Usage:$(RESET) $(MAGENTA)make $(BLUE)[target]$(RESET)"
 	@echo ""
-	@echo "Targets:"
-	@echo "  install            Install all dotfiles (public + private + work)"
-	@echo "  install_public     Install only public dotfiles"
-	@echo "  install_private    Install private dotfiles + mackup restore"
-	@echo "  install_personal   Install personal configs only"
-	@echo "  install_work       Install work dotfiles + mackup restore"
-	@echo "  update             Update repositories from git"
-	@echo "  link               Run public dotfiles link only"
-	@echo "  clean              Remove dead symlinks"
-	@echo "  brew_install       Install Brewfile packages"
-	@echo "  backup             Backup files/apps with Brew and Mackup"
-	@echo "  mackup             Sync mackup ignore list and run backup"
-	@echo "  brew_dump          Dump current brew packages to Brewfile"
-	@echo "  help               Show this help"
+	@echo "$(GREEN)Targets:$(RESET)"
+	@echo "  $(BLUE)install$(RESET)            Install all dotfiles (public + private + work)"
+	@echo "  $(BLUE)install_public$(RESET)     Install only public dotfiles"
+	@echo "  $(BLUE)install_private$(RESET)    Install private dotfiles + mackup restore"
+	@echo "  $(BLUE)install_personal$(RESET)   Install personal configs only"
+	@echo "  $(BLUE)install_work$(RESET)       Install work dotfiles + mackup restore"
+	@echo "  $(BLUE)update$(RESET)             Update repositories from git"
+	@echo "  $(BLUE)link$(RESET)               Run public dotfiles link only"
+	@echo "  $(BLUE)clean$(RESET)              Remove dead symlinks"
+	@echo "  $(BLUE)brew_install$(RESET)       Install Brewfile packages"
+	@echo "  $(BLUE)backup$(RESET)             Backup files/apps with Brew and Mackup"
+	@echo "  $(BLUE)mackup$(RESET)             Sync mackup ignore list and run backup"
+	@echo "  $(BLUE)brew_dump$(RESET)          Dump current brew packages to Brewfile"
+	@echo "  $(BLUE)help$(RESET)               Show this help"

@@ -13,6 +13,9 @@ MACKUP_CFG="$MACKUP_DIR/mackup.cfg"
 MANAGED_CFG="$MACKUP_DIR/applications/dotbot_managed.cfg"
 MACKUP_APPS=$(echo "$(brew --prefix mackup)"/libexec/lib/python*/site-packages/mackup/applications)
 
+# Set colors
+source "$(dirname "$0")/colors.sh"
+
 # Step 1: Extract linked paths from dotbot.yaml
 paths=$(sed -n 's|^[[:space:]]*~/\([^:]*\):.*|\1|p' "$DOTBOT_CONFIG" | sort -u)
 
@@ -55,5 +58,5 @@ sed -i '' '/\[applications_to_ignore\]/,$d' "$MACKUP_CFG"
   echo "$ignore_list"
 } >>"$MACKUP_CFG"
 
-echo "✓ Updated: $MANAGED_CFG"
-echo "✓ Updated: $MACKUP_CFG"
+echo "${GREEN}✓ Updated: $MANAGED_CFG${RESET}"
+echo "${GREEN}✓ Updated: $MACKUP_CFG${RESET}"
