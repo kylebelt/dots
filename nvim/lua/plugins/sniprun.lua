@@ -13,11 +13,11 @@ return {
     display = { "TempFloatingWindow" },
   },
   keys = {
-    { "<leader>CC", "<cmd>%SnipRun<cr>", desc = "SnipRun entire file", silent = true },
-    { "<leader>C", "<Plug>SnipRunOperator", desc = "SnipRun (operator)", silent = true },
-    { "<leader>C", "<Plug>SnipRun", mode = "v", desc = "SnipRun selection", silent = true },
-    { "<leader>Cr", "<Plug>SnipReplMemoryClean", desc = "Clean SnipRun memory", silent = true },
-    { "<leader>CR", "<Plug>SnipReset", desc = "Reset SnipRun", silent = true },
-    { "<leader>Cx", "<Plug>SnipClose", desc = "Close SnipRun", silent = true },
+    { "<leader>RR", "<cmd>%SnipRun<cr>", desc = "SnipRun entire file", silent = true },
+    { "<leader>R", "<Plug>SnipRunOperator", desc = "SnipRun (operator)", silent = true },
+    { "<leader>R", "<Plug>SnipRun", mode = "v", desc = "SnipRun selection", silent = true },
+    { "<leader>Rc", "<Plug>SnipReplMemoryClean", desc = "Clean SnipRun memory", silent = true },
+    { "<leader>Rr", "<Plug>SnipReset", desc = "Reset SnipRun", silent = true },
+    { "<leader>Rx", "<Plug>SnipClose", desc = "Close SnipRun", silent = true },
   },
 }
